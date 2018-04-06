@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<solver>
+    <environmentMode>NON_REPRODUCIBLE</environmentMode>
+
+    <!-- Domain model configuration -->
+    <scanAnnotatedClasses>
+        <packageInclude>org.betaiotazeta.autoshiftplanner</packageInclude>
+    </scanAnnotatedClasses>
+
+    <!-- Score configuration -->
+    <scoreDirectorFactory>
+        <easyScoreCalculatorClass>org.betaiotazeta.autoshiftplanner.AspEasyScoreCalculator</easyScoreCalculatorClass>
+        <initializingScoreTrend>ANY</initializingScoreTrend>
+    </scoreDirectorFactory>
+
+    <!-- Optimization algorithms configuration -->
+    <termination>
+        <bestScoreLimit>0hard/0soft</bestScoreLimit>
+        <!-- <secondsSpentLimit>3600</secondsSpentLimit> -->
+    </termination>
+
+    <constructionHeuristic>
+        <constructionHeuristicType>FIRST_FIT</constructionHeuristicType>
+    </constructionHeuristic>
+
+    <!-- First localSearch phase -->
+    <localSearch>
+        <unionMoveSelector>
+            <changeMoveSelector/>
+            <swapMoveSelector/>          
+            <pillarChangeMoveSelector>
+                <pillarSelector>
+                    <subPillarEnabled>true</subPillarEnabled>
+                    <minimumSubPillarSize>2</minimumSubPillarSize>
+                    <maximumSubPillarSize>4</maximumSubPillarSize>
+                </pillarSelector>
+            </pillarChangeMoveSelector>          
+            <pillarSwapMoveSelector>
+                <pillarSelector>
+                    <subPillarEnabled>true</subPillarEnabled>
+                    <minimumSubPillarSize>2</minimumSubPillarSize>
+                    <maximumSubPillarSize>4</maximumSubPillarSize>
+                </pillarSelector>
+            </pillarSwapMoveSelector>
+
+            <!--
+            <changeMoveSelector>             
+                <filterClass>autoshiftplanner.SameValueChangeMoveFilter</filterClass>
+            </changeMoveSelector>
+          
+            <swapMoveSelector>
+                <filterClass>autoshiftplanner.SameValueSwapMoveFilter</filterClass>
+            </swapMoveSelector>
+            -->
+          
+            <!-- <cartesianProductMoveSelector> -->
+            <!-- </cartesianProductMoveSelector> -->
+        </unionMoveSelector>
+            
+        <acceptor>
+            <entityTabuSize>3</entityTabuSize>
+            <!-- <valueTabuSize>0</valueTabuSize> -->
+        </acceptor>
+        
+        <forager>
+            <pickEarlyType>FIRST_BEST_SCORE_IMPROVING</pickEarlyType>
+            <acceptedCountLimit>100</acceptedCountLimit>
+            <!-- <finalistPodiumType>STRATEGIC_OSCILLATION_BY_LEVEL_ON_BEST_SCORE</finalistPodiumType> -->
+        </forager>
+          
+        <termination>
+            <!-- <unimprovedSecondsSpentLimit>30</unimprovedSecondsSpentLimit> -->
+            <secondsSpentLimit>60</secondsSpentLimit>
+        </termination>
+    </localSearch>
+
+    <!-- Second localSearch phase -->
+    <localSearch>
+        <unionMoveSelector>        
+            <changeMoveSelector/>
+            <swapMoveSelector/>          
+            <pillarChangeMoveSelector>
+                <pillarSelector>
+                    <subPillarEnabled>true</subPillarEnabled>
+                    <minimumSubPillarSize>2</minimumSubPillarSize>
+                    <maximumSubPillarSize>4</maximumSubPillarSize>
+                </pillarSelector>
+            </pillarChangeMoveSelector>         
+            <pillarSwapMoveSelector>
+                <pillarSelector>
+                    <subPillarEnabled>true</subPillarEnabled>
+                    <minimumSubPillarSize>2</minimumSubPillarSize>
+                    <maximumSubPillarSize>4</maximumSubPillarSize>
+                </pillarSelector>
+            </pillarSwapMoveSelector>
+        </unionMoveSelector>
+ 
+        <acceptor>
+            <entityTabuSize>5</entityTabuSize>
+        </acceptor>
+
+        <forager>
+            <acceptedCountLimit>1000</acceptedCountLimit>
+            <!-- <finalistPodiumType>STRATEGIC_OSCILLATION_BY_LEVEL_ON_BEST_SCORE</finalistPodiumType> -->
+        </forager>
+    </localSearch>
+  
+</solver>
