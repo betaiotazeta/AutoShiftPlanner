@@ -1,5 +1,3 @@
-repository: betaiotazeta/GitHubTest
-
 theme: jekyll-theme-modernist
 
 plugins:
@@ -13,6 +11,8 @@ plugins:
   - jekyll-sitemap
 
 # lang: en-US (default)
+
+repository: betaiotazeta/AutoShiftPlanner
 
 url: "https://betaiotazeta.github.io/AutoShiftPlanner"
 
