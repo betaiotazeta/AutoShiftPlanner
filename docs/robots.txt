@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://betaiotazeta.github.io/AutoShiftPlanner/sitemap.xml

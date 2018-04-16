@@ -8,7 +8,7 @@ plugins:
 #  - jekyll-mentions
 #  - jekyll-include-cache
 #  - jekyll-seo-tag
-  - jekyll-sitemap
+#  - jekyll-sitemap
 
 # lang: en-US (default)
 
