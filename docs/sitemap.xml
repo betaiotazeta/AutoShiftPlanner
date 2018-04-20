@@ -20,4 +20,10 @@
        <image:title>AutoShiftPlanner demo animated gif</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://betaiotazeta.github.io/AutoShiftPlanner/about.html</loc>
+  </url>
+  <url>
+    <loc>https://betaiotazeta.github.io/AutoShiftPlanner/usage.html</loc>
+  </url>
 </urlset>

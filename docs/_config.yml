@@ -14,11 +14,13 @@ plugins:
 
 repository: betaiotazeta/AutoShiftPlanner
 
-url: "https://betaiotazeta.github.io/AutoShiftPlanner"
+url: https://betaiotazeta.github.io
+
+baseurl: "/AutoShiftPlanner"
 
 title: Auto Shift Planner
 
-description: Auto Shift Planner is a free user-friendly desktop application that can design detailed employees shift schedules and solve them automatically while meeting the maximum satisfaction of constraints.
+description: Auto Shift Planner is a free and user-friendly application that can design and automatically generate highly detailed employee shift schedules based on rules and preferences.
 
 show_downloads: true
 
