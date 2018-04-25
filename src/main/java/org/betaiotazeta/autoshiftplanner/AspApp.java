@@ -153,6 +153,9 @@ public class AspApp extends javax.swing.JFrame {
         solverConfigMenu = new javax.swing.JMenuItem();
         benchmarkConfigMenu = new javax.swing.JMenuItem();
         benchmarkConfigTemplateMenu = new javax.swing.JMenuItem();
+        helpMenu = new javax.swing.JMenu();
+        usageMenu = new javax.swing.JMenuItem();
+        websiteMenu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Auto Shift Planner");
@@ -698,6 +701,26 @@ public class AspApp extends javax.swing.JFrame {
 
         jMenuBar1.add(benchmarkMenu);
 
+        helpMenu.setText("Help");
+
+        usageMenu.setText("Usage...");
+        usageMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usageMenuActionPerformed(evt);
+            }
+        });
+        helpMenu.add(usageMenu);
+
+        websiteMenu.setText("Web Site...");
+        websiteMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                websiteMenuActionPerformed(evt);
+            }
+        });
+        helpMenu.add(websiteMenu);
+
+        jMenuBar1.add(helpMenu);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -801,6 +824,12 @@ public class AspApp extends javax.swing.JFrame {
     }//GEN-LAST:event_removeEmployee_jButtonActionPerformed
 
     private void solve_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solve_jButtonActionPerformed
+        
+        if (staff.isEmpty()) {
+            String message = "Please add employees first.";
+            JOptionPane.showMessageDialog(aspApp, message, "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         
         startInstant = Instant.now();
         updateElapsedTime();
@@ -913,11 +942,9 @@ public class AspApp extends javax.swing.JFrame {
                 } catch (InterruptedException ex) {
                     String message = ex.getMessage();
                     JOptionPane.showMessageDialog(aspApp, message, "Error", JOptionPane.ERROR_MESSAGE);
-                    System.out.println(message);
                 } catch (ExecutionException ex) {
                     String message = ex.getMessage();
                     JOptionPane.showMessageDialog(aspApp, message, "Error", JOptionPane.ERROR_MESSAGE);
-                    System.out.println(message);
                 }
             }
         };
@@ -1058,6 +1085,31 @@ public class AspApp extends javax.swing.JFrame {
         updateLabelHoursWorked();
         repaint();
     }//GEN-LAST:event_reset_jButtonActionPerformed
+
+    private void usageMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usageMenuActionPerformed
+        try {
+            String usageUrl = "https://betaiotazeta.github.io/AutoShiftPlanner/usage.html";
+            java.awt.Desktop.getDesktop().browse(java.net.URI.create(usageUrl));
+        }
+        catch (Exception ex) {
+            String message = ex.getMessage();
+            JOptionPane.showMessageDialog(aspApp, message, "Error", JOptionPane.ERROR_MESSAGE);
+            message = "Please, view page: https://betaiotazeta.github.io/AutoShiftPlanner/usage.html";
+            JOptionPane.showMessageDialog(aspApp, message, "Information", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_usageMenuActionPerformed
+
+    private void websiteMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_websiteMenuActionPerformed
+        try {
+            String websiteUrl = "https://betaiotazeta.github.io/AutoShiftPlanner";
+            java.awt.Desktop.getDesktop().browse(java.net.URI.create(websiteUrl));
+        } catch (Exception ex) {
+            String message = ex.getMessage();
+            JOptionPane.showMessageDialog(aspApp, message, "Error", JOptionPane.ERROR_MESSAGE);
+            message = "Please, view site: https://betaiotazeta.github.io/AutoShiftPlanner";
+            JOptionPane.showMessageDialog(aspApp, message, "Information", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_websiteMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1380,6 +1432,7 @@ public class AspApp extends javax.swing.JFrame {
     private javax.swing.JSpinner endTime_jSpinner;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JRadioButton forbidden_jRadioButton;
+    private javax.swing.JMenu helpMenu;
     private javax.swing.JCheckBox hoursPerDay_jCheckBox;
     private javax.swing.JSpinner hoursPerDay_jSpinner;
     private javax.swing.JCheckBox hoursPerWeek_jCheckbox;
@@ -1420,6 +1473,8 @@ public class AspApp extends javax.swing.JFrame {
     private org.betaiotazeta.autoshiftplanner.TablePanel tablePanel1;
     private javax.swing.JLabel time_jLabel;
     private javax.swing.JCheckBox uniformEmployeesDistribution_jCheckBox;
+    private javax.swing.JMenuItem usageMenu;
+    private javax.swing.JMenuItem websiteMenu;
     private javax.swing.JRadioButton worked_jRadioButton;
     // End of variables declaration//GEN-END:variables
 

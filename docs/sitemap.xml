@@ -3,7 +3,7 @@
   xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" 
   xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url> 
-    <loc>https://betaiotazeta.github.io/AutoShiftPlanner/index.html</loc> 
+    <loc>https://betaiotazeta.github.io/AutoShiftPlanner/</loc> 
     <image:image>
        <image:loc>https://betaiotazeta.github.io/AutoShiftPlanner/images/AutoShiftPlanner_screenshot_1.png</image:loc>
        <image:caption>Auto Shift Planner settings</image:caption>
