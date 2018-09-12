@@ -115,7 +115,7 @@ public class TablePanel extends javax.swing.JPanel {
 
         if (go) {
 
-            boolean worked = table.getCell(row, column).getWorked();
+            boolean worked = table.getCell(row, column).isWorked();
             boolean forbidden = table.getCell(row, column).isForbidden();
             boolean mandatory = table.getCell(row, column).isMandatory();
 
@@ -198,7 +198,7 @@ public class TablePanel extends javax.swing.JPanel {
         if (go) {
             if (!(rowOrigin == row) || !(columnOrigin == column)) {
 
-                boolean worked = table.getCell(row, column).getWorked();
+                boolean worked = table.getCell(row, column).isWorked();
                 boolean forbidden = table.getCell(row, column).isForbidden();
                 boolean mandatory = table.getCell(row, column).isMandatory();
 
@@ -284,7 +284,7 @@ public class TablePanel extends javax.swing.JPanel {
 
         if (go) {
 
-            boolean worked = table.getCell(row, column).getWorked();
+            boolean worked = table.getCell(row, column).isWorked();
             boolean forbidden = table.getCell(row, column).isForbidden();
             boolean mandatory = table.getCell(row, column).isMandatory();
 
@@ -300,7 +300,7 @@ public class TablePanel extends javax.swing.JPanel {
                         if (valueWheel == z) {
                             columnWheel = columnWheel - z;
                             if ((columnWheel >= 0) && (columnWheel < nC)) {
-                                if (!table.getCell(rowWheel, columnWheel).getWorked()
+                                if (!table.getCell(rowWheel, columnWheel).isWorked()
                                         && !table.getCell(rowWheel, columnWheel).isForbidden()) {
                                     table.getCell(rowWheel, columnWheel).setWorked(true);
                                     employee.setHoursWorked(employee.getHoursWorked() + 0.5);
@@ -311,7 +311,7 @@ public class TablePanel extends javax.swing.JPanel {
                                 columnWheel = columnWheel + z;
                             }
                         } else {
-                            if (table.getCell(rowWheel, columnWheel).getWorked()
+                            if (table.getCell(rowWheel, columnWheel).isWorked()
                                     && !table.getCell(rowWheel, columnWheel).isForbidden()) {
                                 table.getCell(rowWheel, columnWheel).setWorked(false);
                                 employee.setHoursWorked(employee.getHoursWorked() - 0.5);
@@ -335,7 +335,7 @@ public class TablePanel extends javax.swing.JPanel {
                         if (valueWheel == z) {
                             columnWheel = columnWheel - z;
                             if ((columnWheel >= 0) && (columnWheel < nC)) {
-                                if (table.getCell(rowWheel, columnWheel).getWorked()
+                                if (table.getCell(rowWheel, columnWheel).isWorked()
                                         && !table.getCell(rowWheel, columnWheel).isForbidden()) {
                                     table.getCell(rowWheel, columnWheel).setWorked(false);
                                     employee.setHoursWorked(employee.getHoursWorked() - 0.5);
@@ -346,7 +346,7 @@ public class TablePanel extends javax.swing.JPanel {
                                 columnWheel = columnWheel + z;
                             }
                         } else {
-                            if (table.getCell(rowWheel, columnWheel).getWorked()
+                            if (table.getCell(rowWheel, columnWheel).isWorked()
                                     && !table.getCell(rowWheel, columnWheel).isForbidden()) {
                                 table.getCell(rowWheel, columnWheel).setWorked(false);
                                 employee.setHoursWorked(employee.getHoursWorked() - 0.5);
@@ -376,7 +376,7 @@ public class TablePanel extends javax.swing.JPanel {
                             columnWheel = columnWheel - z;
                             if ((columnWheel >= 0) && (columnWheel < nC)) {
                                 if (!table.getCell(rowWheel, columnWheel).isForbidden()
-                                        && !table.getCell(rowWheel, columnWheel).getWorked()
+                                        && !table.getCell(rowWheel, columnWheel).isWorked()
                                         && !table.getCell(rowWheel, columnWheel).isMandatory()) {
                                     table.getCell(rowWheel, columnWheel).setForbidden(true);
                                     repaint();
@@ -386,7 +386,7 @@ public class TablePanel extends javax.swing.JPanel {
                             }
                         } else {
                             if (table.getCell(rowWheel, columnWheel).isForbidden()
-                                    && !table.getCell(rowWheel, columnWheel).getWorked()
+                                    && !table.getCell(rowWheel, columnWheel).isWorked()
                                     && !table.getCell(rowWheel, columnWheel).isMandatory()) {
                                 table.getCell(rowWheel, columnWheel).setForbidden(false);
                                 repaint();
@@ -409,7 +409,7 @@ public class TablePanel extends javax.swing.JPanel {
                             columnWheel = columnWheel - z;
                             if ((columnWheel >= 0) && (columnWheel < nC)) {
                                 if (table.getCell(rowWheel, columnWheel).isForbidden()
-                                        && !table.getCell(rowWheel, columnWheel).getWorked()
+                                        && !table.getCell(rowWheel, columnWheel).isWorked()
                                         && !table.getCell(rowWheel, columnWheel).isMandatory()) {
                                     table.getCell(rowWheel, columnWheel).setForbidden(false);
                                     repaint();
@@ -419,7 +419,7 @@ public class TablePanel extends javax.swing.JPanel {
                             }
                         } else {
                             if (table.getCell(rowWheel, columnWheel).isForbidden()
-                                    && !table.getCell(rowWheel, columnWheel).getWorked()
+                                    && !table.getCell(rowWheel, columnWheel).isWorked()
                                     && !table.getCell(rowWheel, columnWheel).isMandatory()) {
                                 table.getCell(rowWheel, columnWheel).setForbidden(false);
                                 repaint();

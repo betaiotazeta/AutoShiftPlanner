@@ -57,7 +57,7 @@ public class TableGraphic {
 
                 } else {
                     
-                    if (table.getCell(i, j).getWorked()) {
+                    if (table.getCell(i, j).isWorked()) {
 
                         int idEmployee = (table.getCell(i, j).getIdEmployee());
 

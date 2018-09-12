@@ -10,7 +10,7 @@
         </problemBenchmarks>
         <solver>
             <!-- Common solver configuration -->
-            <environmentMode>NON_REPRODUCIBLE</environmentMode>
+            <environmentMode>REPRODUCIBLE</environmentMode>
 
             <!-- Domain model configuration -->
             <scanAnnotatedClasses>
@@ -25,7 +25,7 @@
             
             <termination>
                 <bestScoreLimit>0hard/0soft</bestScoreLimit>
-                <secondsSpentLimit>300</secondsSpentLimit>
+                <secondsSpentLimit>180</secondsSpentLimit>
             </termination>
             
             <constructionHeuristic>
@@ -37,75 +37,22 @@
     </inheritedSolverBenchmark>
 
 
-    <#list [0, 3, 5, 7, 10, 12, 14] as entityTabuSize>
-    <#list [50, 100] as acceptedCountLimit>
+    <#list [100, 200, 400, 600, 800] as stepCountingHillClimbingSize>
+    <#list [1, 2, 4, 6, 8] as acceptedCountLimit>
     <solverBenchmark>
-        <name>Tabu Search entityTabuSize ${entityTabuSize} acceptedCountLimit ${acceptedCountLimit}</name>
+        <name>Step-Counting-HC stepCountingHillClimbingSize ${stepCountingHillClimbingSize} acceptedCountLimit ${acceptedCountLimit}</name>
         <solver>
             
-            <!-- First localSearch phase -->
+            <!-- localSearch phase -->
             <localSearch>
-                <unionMoveSelector>          
-                    <changeMoveSelector/>
-                    <swapMoveSelector/>          
-                    <pillarChangeMoveSelector>
-                        <pillarSelector>
-                            <subPillarEnabled>true</subPillarEnabled>
-                            <minimumSubPillarSize>2</minimumSubPillarSize>
-                            <maximumSubPillarSize>4</maximumSubPillarSize>
-                        </pillarSelector>
-                    </pillarChangeMoveSelector>          
-                    <pillarSwapMoveSelector>
-                        <pillarSelector>
-                            <subPillarEnabled>true</subPillarEnabled>
-                            <minimumSubPillarSize>2</minimumSubPillarSize>
-                            <maximumSubPillarSize>4</maximumSubPillarSize>
-                        </pillarSelector>
-                    </pillarSwapMoveSelector>
-                </unionMoveSelector>
-                
-                <acceptor>
-                    <entityTabuSize>${entityTabuSize}</entityTabuSize>
-                </acceptor>
-                
-                <forager>
-                    <pickEarlyType>FIRST_BEST_SCORE_IMPROVING</pickEarlyType>
-                    <acceptedCountLimit>${acceptedCountLimit}</acceptedCountLimit>
-                </forager>
-                
-                <termination>
-                    <secondsSpentLimit>60</secondsSpentLimit>
-                </termination>
-            </localSearch>
-            
-            <!-- Second localSearch phase -->
-            <localSearch>
-                <unionMoveSelector>        
-                    <changeMoveSelector/>
-                    <swapMoveSelector/>          
-                    <pillarChangeMoveSelector>
-                        <pillarSelector>
-                            <subPillarEnabled>true</subPillarEnabled>
-                            <minimumSubPillarSize>2</minimumSubPillarSize>
-                            <maximumSubPillarSize>4</maximumSubPillarSize>
-                        </pillarSelector>
-                    </pillarChangeMoveSelector>          
-                    <pillarSwapMoveSelector>
-                        <pillarSelector>
-                            <subPillarEnabled>true</subPillarEnabled>
-                            <minimumSubPillarSize>2</minimumSubPillarSize>
-                            <maximumSubPillarSize>4</maximumSubPillarSize>
-                        </pillarSelector>
-                    </pillarSwapMoveSelector>
-                </unionMoveSelector>
- 
-                <acceptor>
-                    <entityTabuSize>5</entityTabuSize>
-                </acceptor>
 
+                <acceptor>
+                    <stepCountingHillClimbingSize>400</stepCountingHillClimbingSize>
+                </acceptor>
                 <forager>
-                    <acceptedCountLimit>1000</acceptedCountLimit>
+                    <acceptedCountLimit>1</acceptedCountLimit>
                 </forager>
+
             </localSearch>
             
         </solver>

@@ -102,6 +102,22 @@ public class Configurator {
         this.hoursPerDay = hoursPerDay;
     }
 
+    public boolean isOvernightRestCheck() {
+        return overnightRestCheck;
+    }
+
+    public void setOvernightRestCheck(boolean overnightRestCheck) {
+        this.overnightRestCheck = overnightRestCheck;
+    }
+
+    public double getOvernightRest() {
+        return overnightRest;
+    }
+
+    public void setOvernightRest(double overnightRest) {
+        this.overnightRest = overnightRest;
+    }
+
     public boolean isMandatoryShiftsCheck() {
         return mandatoryShiftsCheck;
     }
@@ -130,6 +146,8 @@ public class Configurator {
     private int employeesPerPeriod;
     private boolean hoursPerDayCheck;
     private double hoursPerDay;
+    private boolean overnightRestCheck;
+    private double overnightRest;
     private boolean mandatoryShiftsCheck;
     private boolean uniformEmployeesDistributionCheck;
 }

@@ -16,26 +16,41 @@ package org.betaiotazeta.autoshiftplanner;
  */
 public class Table {
     
-    public Table(int rows, int columns) {
-
+    public Table(int rows, int columns, Business business) {
+               
         this.rows = rows;
         this.columns = columns;
-
-        int numberOfEmployees = rows / 7;
+        int numberOfEmployees = business.getNumberOfEmployees();
+        double startTime = business.getStartTime();        
         byte idEmployee = 0;
         short idPeriod = 0;
-
+        int dayOfWeek = -1; // counting of the days will start at 0
+        int startingMinuteOfDay;
+                
         // creates an array of Cell objects initialized to null
         arrayOfCells = new Cell[rows][columns];
 
         // fill the array with objects of type Cell
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
-                // (byte idEmployee, short idPeriod, Boolean worked, boolean mandatory, boolean forbidden)
-                arrayOfCells[i][j] = new Cell((byte) 0, (short) 0, false, false, false);
+                // (byte idEmployee, short idPeriod, int startingMinuteOfDay, int dayOfWeek, boolean worked, boolean mandatory, boolean forbidden)
+                arrayOfCells[i][j] = new Cell((byte) 0, (short) 0, 0, 0, false, false, false);
             }
         }
 
+        // assign the correct dayOfWeek and startingMinuteOfDay to the cells
+        for (int i = 0; i < rows; i++) {
+            startingMinuteOfDay = (int) startTime * 60; // *60 in minutes;
+            if (i % numberOfEmployees == 0) {
+                dayOfWeek++;
+            }            
+            for (int j = 0; j < columns; j++) {
+                arrayOfCells[i][j].setStartingMinuteOfDay(startingMinuteOfDay);
+                arrayOfCells[i][j].setDayOfWeek(dayOfWeek);
+                startingMinuteOfDay = startingMinuteOfDay + 30; // 30 for half hours
+            }
+        }
+        
         // assign the correct idEmployee to the cells
         for (int i = 0; i < rows; i++) {
             if (idEmployee == numberOfEmployees) {
@@ -82,7 +97,7 @@ public class Table {
            
     // Print the table schema on terminal. Used for testing.
     public void printIdPeriod() {
-        System.out.println("IdPeriod :");
+        System.out.println("IdPeriod: ");
         short idPeriod;
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
@@ -95,7 +110,7 @@ public class Table {
     }
 
     public void printIdEmployee() {
-        System.out.println("IdEmployee :");        
+        System.out.println("IdEmployee: ");        
         byte idEmployee;
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
@@ -106,34 +121,42 @@ public class Table {
         }
         System.out.println();
     }
-    
-        public void printWorked() {
-        System.out.println("Worked cells :");        
-        Boolean worked;
+
+    public void printWorked() {
+        System.out.println("Worked cells: ");
+        boolean worked;
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
-                worked = (arrayOfCells[i][j].getWorked());
+                worked = (arrayOfCells[i][j].isWorked());
                 System.out.print(worked + " ");
             }
             System.out.println();
         }
         System.out.println();
     }
-    
-    
-    /**
-     * The number (quantity) of the rows in the table.
-     */
+
+    public void printTime() {
+        System.out.println("Time stored in cells: ");
+        int dayOfWeek;
+        int startingMinuteOfDay;
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                dayOfWeek = (arrayOfCells[i][j].getDayOfWeek());
+                startingMinuteOfDay = (arrayOfCells[i][j].getStartingMinuteOfDay());                
+                System.out.print("day: " + dayOfWeek + ", min: " + startingMinuteOfDay + " | ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
+       
+    // The number (quantity) of the rows in the table.     
     private int rows;
 
-    /**
-     * The number (quantity) of the columns in the table.
-     */
+    // The number (quantity) of the columns in the table.
     private int columns;
 
-    /**
-     * The array contains objects of the cell type and has meaning [row] [column].
-     * The row and column count starts at 0.
-     */
+    // The array contains objects of the cell type and has meaning [row] [column].
+    // The row and column count starts at 0.
     private Cell[][] arrayOfCells;
 }

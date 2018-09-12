@@ -46,6 +46,11 @@ public class Employee implements Cloneable {
         return null;
     }
 
+    @Override
+    public String toString() {
+        return "Employee{" + "name=" + name + ", hPW=" + hoursPerWeek + ", hW=" + hoursWorked + "}";
+    }
+
     private String name;
     private int hoursPerWeek;
     private double hoursWorked;

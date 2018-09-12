@@ -87,8 +87,11 @@ Released under: Gnu Public License, version 3
 # Roadmap
 
 - Known issues
-  - The solving process may freeze in some situations: restart the solver.
+  - The solving process could be slow in some situations: restarting the solver may help.
   - Enabling "Uniformly distributed employees" (the only soft score constraint) will slow down the solving speed.
 
-- To do
+- To do 
+  - Domain Model could be improved.
+  - A shift is fine tuned with half hour time units: this length should be made configurable in GUI.
+  - Implement score calculation using the Drools rule engine.
   - Please contact me if you are in any way interested in this project. Thanks.

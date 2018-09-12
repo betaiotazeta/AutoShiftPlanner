@@ -3,8 +3,21 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.betaiotazeta</groupId>
     <artifactId>AutoShiftPlanner</artifactId>
-    <version>0.1.0</version>
+    <version>0.2.0</version>
     <packaging>jar</packaging>
+    
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.optaplanner</groupId>
+                <artifactId>optaplanner-bom</artifactId>
+                <type>pom</type>
+                <version>7.10.0.Final</version>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    
     <dependencies>
         <dependency>
             <groupId>org.optaplanner</groupId>
@@ -20,17 +33,6 @@
             <version>1.2.3</version>
         </dependency>
     </dependencies>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.optaplanner</groupId>
-                <artifactId>optaplanner-bom</artifactId>
-                <type>pom</type>
-                <version>7.6.0.Final</version>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
     
     <build>
         <plugins>

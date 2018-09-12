@@ -944,7 +944,7 @@
           <dayOfWeek>0</dayOfWeek>
           <startingMinuteOfDay>1200</startingMinuteOfDay>
           <worked>false</worked>
-          <mandatory>true</mandatory>
+          <mandatory>false</mandatory>
           <forbidden>false</forbidden>
         </org.betaiotazeta.autoshiftplanner.Cell>
       </org.betaiotazeta.autoshiftplanner.Cell-array>
@@ -1171,7 +1171,7 @@
           <dayOfWeek>0</dayOfWeek>
           <startingMinuteOfDay>1200</startingMinuteOfDay>
           <worked>false</worked>
-          <mandatory>true</mandatory>
+          <mandatory>false</mandatory>
           <forbidden>false</forbidden>
         </org.betaiotazeta.autoshiftplanner.Cell>
       </org.betaiotazeta.autoshiftplanner.Cell-array>
@@ -1182,7 +1182,7 @@
           <dayOfWeek>0</dayOfWeek>
           <startingMinuteOfDay>480</startingMinuteOfDay>
           <worked>false</worked>
-          <mandatory>true</mandatory>
+          <mandatory>false</mandatory>
           <forbidden>false</forbidden>
         </org.betaiotazeta.autoshiftplanner.Cell>
         <org.betaiotazeta.autoshiftplanner.Cell id="144">
@@ -1409,7 +1409,7 @@
           <dayOfWeek>0</dayOfWeek>
           <startingMinuteOfDay>480</startingMinuteOfDay>
           <worked>false</worked>
-          <mandatory>true</mandatory>
+          <mandatory>false</mandatory>
           <forbidden>false</forbidden>
         </org.betaiotazeta.autoshiftplanner.Cell>
         <org.betaiotazeta.autoshiftplanner.Cell id="170">
@@ -2533,7 +2533,7 @@
           <dayOfWeek>1</dayOfWeek>
           <startingMinuteOfDay>1200</startingMinuteOfDay>
           <worked>false</worked>
-          <mandatory>true</mandatory>
+          <mandatory>false</mandatory>
           <forbidden>false</forbidden>
         </org.betaiotazeta.autoshiftplanner.Cell>
       </org.betaiotazeta.autoshiftplanner.Cell-array>
@@ -2760,7 +2760,7 @@
           <dayOfWeek>1</dayOfWeek>
           <startingMinuteOfDay>1200</startingMinuteOfDay>
           <worked>false</worked>
-          <mandatory>true</mandatory>
+          <mandatory>false</mandatory>
           <forbidden>false</forbidden>
         </org.betaiotazeta.autoshiftplanner.Cell>
       </org.betaiotazeta.autoshiftplanner.Cell-array>
@@ -2780,7 +2780,7 @@
           <dayOfWeek>1</dayOfWeek>
           <startingMinuteOfDay>510</startingMinuteOfDay>
           <worked>false</worked>
-          <mandatory>true</mandatory>
+          <mandatory>false</mandatory>
           <forbidden>false</forbidden>
         </org.betaiotazeta.autoshiftplanner.Cell>
         <org.betaiotazeta.autoshiftplanner.Cell id="327">
@@ -3007,7 +3007,7 @@
           <dayOfWeek>1</dayOfWeek>
           <startingMinuteOfDay>510</startingMinuteOfDay>
           <worked>false</worked>
-          <mandatory>true</mandatory>
+          <mandatory>false</mandatory>
           <forbidden>false</forbidden>
         </org.betaiotazeta.autoshiftplanner.Cell>
         <org.betaiotazeta.autoshiftplanner.Cell id="353">
@@ -3441,7 +3441,7 @@
           <dayOfWeek>2</dayOfWeek>
           <startingMinuteOfDay>1200</startingMinuteOfDay>
           <worked>false</worked>
-          <mandatory>true</mandatory>
+          <mandatory>false</mandatory>
           <forbidden>false</forbidden>
         </org.betaiotazeta.autoshiftplanner.Cell>
       </org.betaiotazeta.autoshiftplanner.Cell-array>
@@ -4349,7 +4349,7 @@
           <dayOfWeek>2</dayOfWeek>
           <startingMinuteOfDay>1200</startingMinuteOfDay>
           <worked>false</worked>
-          <mandatory>true</mandatory>
+          <mandatory>false</mandatory>
           <forbidden>false</forbidden>
         </org.betaiotazeta.autoshiftplanner.Cell>
       </org.betaiotazeta.autoshiftplanner.Cell-array>
@@ -4360,7 +4360,7 @@
           <dayOfWeek>2</dayOfWeek>
           <startingMinuteOfDay>480</startingMinuteOfDay>
           <worked>false</worked>
-          <mandatory>true</mandatory>
+          <mandatory>false</mandatory>
           <forbidden>false</forbidden>
         </org.betaiotazeta.autoshiftplanner.Cell>
         <org.betaiotazeta.autoshiftplanner.Cell id="508">
@@ -4587,7 +4587,7 @@
           <dayOfWeek>2</dayOfWeek>
           <startingMinuteOfDay>480</startingMinuteOfDay>
           <worked>false</worked>
-          <mandatory>true</mandatory>
+          <mandatory>false</mandatory>
           <forbidden>false</forbidden>
         </org.betaiotazeta.autoshiftplanner.Cell>
         <org.betaiotazeta.autoshiftplanner.Cell id="534">
@@ -5030,7 +5030,7 @@
           <dayOfWeek>3</dayOfWeek>
           <startingMinuteOfDay>1200</startingMinuteOfDay>
           <worked>false</worked>
-          <mandatory>true</mandatory>
+          <mandatory>false</mandatory>
           <forbidden>false</forbidden>
         </org.betaiotazeta.autoshiftplanner.Cell>
       </org.betaiotazeta.autoshiftplanner.Cell-array>
@@ -5257,7 +5257,7 @@
           <dayOfWeek>3</dayOfWeek>
           <startingMinuteOfDay>1200</startingMinuteOfDay>
           <worked>false</worked>
-          <mandatory>true</mandatory>
+          <mandatory>false</mandatory>
           <forbidden>false</forbidden>
         </org.betaiotazeta.autoshiftplanner.Cell>
       </org.betaiotazeta.autoshiftplanner.Cell-array>
@@ -5958,7 +5958,7 @@
           <dayOfWeek>3</dayOfWeek>
           <startingMinuteOfDay>510</startingMinuteOfDay>
           <worked>false</worked>
-          <mandatory>true</mandatory>
+          <mandatory>false</mandatory>
           <forbidden>false</forbidden>
         </org.betaiotazeta.autoshiftplanner.Cell>
         <org.betaiotazeta.autoshiftplanner.Cell id="691">
@@ -6185,7 +6185,7 @@
           <dayOfWeek>3</dayOfWeek>
           <startingMinuteOfDay>510</startingMinuteOfDay>
           <worked>false</worked>
-          <mandatory>true</mandatory>
+          <mandatory>false</mandatory>
           <forbidden>false</forbidden>
         </org.betaiotazeta.autoshiftplanner.Cell>
         <org.betaiotazeta.autoshiftplanner.Cell id="717">
@@ -6619,7 +6619,7 @@
           <dayOfWeek>4</dayOfWeek>
           <startingMinuteOfDay>1200</startingMinuteOfDay>
           <worked>false</worked>
-          <mandatory>true</mandatory>
+          <mandatory>false</mandatory>
           <forbidden>false</forbidden>
         </org.betaiotazeta.autoshiftplanner.Cell>
       </org.betaiotazeta.autoshiftplanner.Cell-array>
@@ -6846,7 +6846,7 @@
           <dayOfWeek>4</dayOfWeek>
           <startingMinuteOfDay>1200</startingMinuteOfDay>
           <worked>false</worked>
-          <mandatory>true</mandatory>
+          <mandatory>false</mandatory>
           <forbidden>false</forbidden>
         </org.betaiotazeta.autoshiftplanner.Cell>
       </org.betaiotazeta.autoshiftplanner.Cell-array>
@@ -7084,7 +7084,7 @@
           <dayOfWeek>4</dayOfWeek>
           <startingMinuteOfDay>480</startingMinuteOfDay>
           <worked>false</worked>
-          <mandatory>true</mandatory>
+          <mandatory>false</mandatory>
           <forbidden>false</forbidden>
         </org.betaiotazeta.autoshiftplanner.Cell>
         <org.betaiotazeta.autoshiftplanner.Cell id="820">
@@ -7765,7 +7765,7 @@
           <dayOfWeek>4</dayOfWeek>
           <startingMinuteOfDay>480</startingMinuteOfDay>
           <worked>false</worked>
-          <mandatory>true</mandatory>
+          <mandatory>false</mandatory>
           <forbidden>false</forbidden>
         </org.betaiotazeta.autoshiftplanner.Cell>
         <org.betaiotazeta.autoshiftplanner.Cell id="898">
@@ -8208,7 +8208,7 @@
           <dayOfWeek>5</dayOfWeek>
           <startingMinuteOfDay>1200</startingMinuteOfDay>
           <worked>false</worked>
-          <mandatory>true</mandatory>
+          <mandatory>false</mandatory>
           <forbidden>false</forbidden>
         </org.betaiotazeta.autoshiftplanner.Cell>
       </org.betaiotazeta.autoshiftplanner.Cell-array>
@@ -8435,7 +8435,7 @@
           <dayOfWeek>5</dayOfWeek>
           <startingMinuteOfDay>1200</startingMinuteOfDay>
           <worked>false</worked>
-          <mandatory>true</mandatory>
+          <mandatory>false</mandatory>
           <forbidden>false</forbidden>
         </org.betaiotazeta.autoshiftplanner.Cell>
       </org.betaiotazeta.autoshiftplanner.Cell-array>
@@ -8682,7 +8682,7 @@
           <dayOfWeek>5</dayOfWeek>
           <startingMinuteOfDay>510</startingMinuteOfDay>
           <worked>false</worked>
-          <mandatory>true</mandatory>
+          <mandatory>false</mandatory>
           <forbidden>false</forbidden>
         </org.betaiotazeta.autoshiftplanner.Cell>
         <org.betaiotazeta.autoshiftplanner.Cell id="1003">
@@ -8909,7 +8909,7 @@
           <dayOfWeek>5</dayOfWeek>
           <startingMinuteOfDay>510</startingMinuteOfDay>
           <worked>false</worked>
-          <mandatory>true</mandatory>
+          <mandatory>false</mandatory>
           <forbidden>false</forbidden>
         </org.betaiotazeta.autoshiftplanner.Cell>
         <org.betaiotazeta.autoshiftplanner.Cell id="1029">
@@ -10024,7 +10024,7 @@
           <dayOfWeek>6</dayOfWeek>
           <startingMinuteOfDay>1200</startingMinuteOfDay>
           <worked>false</worked>
-          <mandatory>true</mandatory>
+          <mandatory>false</mandatory>
           <forbidden>false</forbidden>
         </org.betaiotazeta.autoshiftplanner.Cell>
       </org.betaiotazeta.autoshiftplanner.Cell-array>
@@ -10271,7 +10271,7 @@
           <dayOfWeek>6</dayOfWeek>
           <startingMinuteOfDay>510</startingMinuteOfDay>
           <worked>false</worked>
-          <mandatory>true</mandatory>
+          <mandatory>false</mandatory>
           <forbidden>false</forbidden>
         </org.betaiotazeta.autoshiftplanner.Cell>
         <org.betaiotazeta.autoshiftplanner.Cell id="1185">
@@ -10498,7 +10498,7 @@
           <dayOfWeek>6</dayOfWeek>
           <startingMinuteOfDay>510</startingMinuteOfDay>
           <worked>false</worked>
-          <mandatory>true</mandatory>
+          <mandatory>false</mandatory>
           <forbidden>false</forbidden>
         </org.betaiotazeta.autoshiftplanner.Cell>
         <org.betaiotazeta.autoshiftplanner.Cell id="1211">
@@ -10932,7 +10932,7 @@
           <dayOfWeek>6</dayOfWeek>
           <startingMinuteOfDay>1200</startingMinuteOfDay>
           <worked>false</worked>
-          <mandatory>true</mandatory>
+          <mandatory>false</mandatory>
           <forbidden>false</forbidden>
         </org.betaiotazeta.autoshiftplanner.Cell>
       </org.betaiotazeta.autoshiftplanner.Cell-array>

@@ -17,25 +17,6 @@ import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore;
 @PlanningSolution
 public class Solution {
     
-    @PlanningEntityCollectionProperty
-    public List<Cell> getCellList() {
-        return cellList;
-    }
-
-    public void setCellList(List<Cell> cellList) {
-        this.cellList = cellList;
-    }
-
-    @ValueRangeProvider(id = "booleanRange")
-    @ProblemFactCollectionProperty
-    public List<Boolean> getBooleanList() {
-        return booleanList;
-    }
-
-    public void setBooleanList(List<Boolean> booleanList) {
-        this.booleanList = booleanList;
-    }
-
     @PlanningScore
     public HardSoftScore getScore() {
         return score;
@@ -45,19 +26,19 @@ public class Solution {
         this.score = score;
     }
 
-    public ArrayList<Employee> getStaff() {
+    public ArrayList<Employee> getStaffScore() {
         return staffScore;
     }
 
-    public void setStaff(ArrayList<Employee> staffScore) {
+    public void setStaffScore(ArrayList<Employee> staffScore) {
         this.staffScore = staffScore;
     }
 
-    public Table getTable() {
+    public Table getTableScore() {
         return tableScore;
     }
 
-    public void setTable(Table tableScore) {
+    public void setTableScore(Table tableScore) {
         this.tableScore = tableScore;
     }
 
@@ -84,6 +65,51 @@ public class Solution {
     public void setBonus(int bonus) {
         this.bonus = bonus;
     }
+
+    public List<Day> getDayList() {
+        return dayList;
+    }
+
+    public void setDayList(List<Day> dayList) {
+        this.dayList = dayList;
+    }
+
+    @ValueRangeProvider(id = "timeGrainRange")
+    @ProblemFactCollectionProperty
+    public List<TimeGrain> getTimeGrainList() {
+        return timeGrainList;
+    }
+
+    public void setTimeGrainList(List<TimeGrain> timeGrainList) {
+        this.timeGrainList = timeGrainList;
+    }
+
+    @ValueRangeProvider(id = "shiftDurationRange")
+    @ProblemFactCollectionProperty
+    public List<ShiftDuration> getShiftDurationList() {
+        return shiftDurationList;
+    }
+
+    public void setShiftDurationList(List<ShiftDuration> shiftDurationList) {
+        this.shiftDurationList = shiftDurationList;
+    }
+
+    public List<Shift> getShiftList() {
+        return shiftList;
+    }
+
+    public void setShiftList(List<Shift> shiftList) {
+        this.shiftList = shiftList;
+    }
+
+    @PlanningEntityCollectionProperty
+    public List<ShiftAssignment> getShiftAssignmentList() {
+        return shiftAssignmentList;
+    }
+
+    public void setShiftAssignmentList(List<ShiftAssignment> shiftAssignmentList) {
+        this.shiftAssignmentList = shiftAssignmentList;
+    }
     
     public AspApp getAspApp() {
         return aspApp;
@@ -93,14 +119,17 @@ public class Solution {
         this.aspApp = aspApp;
     }
     
-    private List<Cell> cellList;
-    private List<Boolean> booleanList;
     private HardSoftScore score;
     private ArrayList<Employee> staffScore;
     private Table tableScore;
     private Business business;
     private Configurator configurator;
     private int bonus;
+    private List<Day> dayList;
+    private List<TimeGrain> timeGrainList;
+    private List<ShiftDuration> shiftDurationList;
+    private List<Shift> shiftList;
+    private List<ShiftAssignment> shiftAssignmentList;
     @XStreamOmitField
     private AspApp aspApp;
 }

@@ -10,7 +10,7 @@
         </problemBenchmarks>
         <solver>
             <!-- Common solver configuration -->
-            <environmentMode>NON_REPRODUCIBLE</environmentMode>
+            <environmentMode>REPRODUCIBLE</environmentMode>
 
             <!-- Domain model configuration -->
             <scanAnnotatedClasses>
@@ -27,155 +27,42 @@
                 <bestScoreLimit>0hard/0soft</bestScoreLimit>
                 <secondsSpentLimit>180</secondsSpentLimit>
             </termination>
-            
+
             <constructionHeuristic>
                 <constructionHeuristicType>FIRST_FIT</constructionHeuristicType>
             </constructionHeuristic>
-
-            <!-- First localSearch phase -->
-            <localSearch>
-                <unionMoveSelector>          
-                    <changeMoveSelector/>
-                    <swapMoveSelector/>          
-                    <pillarChangeMoveSelector>
-                        <pillarSelector>
-                            <subPillarEnabled>true</subPillarEnabled>
-                            <minimumSubPillarSize>2</minimumSubPillarSize>
-                            <maximumSubPillarSize>4</maximumSubPillarSize>
-                        </pillarSelector>
-                    </pillarChangeMoveSelector>          
-                    <pillarSwapMoveSelector>
-                        <pillarSelector>
-                            <subPillarEnabled>true</subPillarEnabled>
-                            <minimumSubPillarSize>2</minimumSubPillarSize>
-                            <maximumSubPillarSize>4</maximumSubPillarSize>
-                        </pillarSelector>
-                    </pillarSwapMoveSelector>
-                </unionMoveSelector>
-                
-                <acceptor>
-                    <entityTabuSize>3</entityTabuSize>
-                    <!-- <valueTabuSize>0</valueTabuSize> -->
-                </acceptor>
-                
-                <forager>
-                    <pickEarlyType>FIRST_BEST_SCORE_IMPROVING</pickEarlyType>
-                    <acceptedCountLimit>100</acceptedCountLimit>
-                </forager>
-                  
-                <termination>
-                    <secondsSpentLimit>60</secondsSpentLimit>
-                </termination>
-            </localSearch>
-                        
+                                    
         </solver>
-        <subSingleCount>6</subSingleCount>
+        <subSingleCount>18</subSingleCount>
     </inheritedSolverBenchmark>
-
-        
+   
     <solverBenchmark>
-        <name>Tabu Search</name>
+        <name>ChangeSwapPillarSHORTfilter</name>
         <solver>
-            <!-- Tabu Search specific solver configuration -->
+            <!-- specific solver configuration -->
             <localSearch>
-                <unionMoveSelector>        
-                    <changeMoveSelector/>
-                    <swapMoveSelector/>          
+                <unionMoveSelector>
+                    <changeMoveSelector>
+                        <filterClass>org.betaiotazeta.autoshiftplanner.ForbiddenCellSelectionFilter</filterClass>
+                    </changeMoveSelector>
+                    <swapMoveSelector>
+                    </swapMoveSelector>
                     <pillarChangeMoveSelector>
-                        <pillarSelector>
-                            <subPillarEnabled>true</subPillarEnabled>
-                            <minimumSubPillarSize>2</minimumSubPillarSize>
-                            <maximumSubPillarSize>4</maximumSubPillarSize>
-                        </pillarSelector>
-                    </pillarChangeMoveSelector>         
-                    <pillarSwapMoveSelector>
-                        <pillarSelector>
-                            <subPillarEnabled>true</subPillarEnabled>
-                            <minimumSubPillarSize>2</minimumSubPillarSize>
-                            <maximumSubPillarSize>4</maximumSubPillarSize>
-                        </pillarSelector>
-                    </pillarSwapMoveSelector>
+                        <valueSelector variableName="timeGrain"/>
+                    </pillarChangeMoveSelector>
+                    <pillarChangeMoveSelector>
+                        <valueSelector variableName="shiftDuration"/>
+                    </pillarChangeMoveSelector>
                 </unionMoveSelector>
- 
-                <acceptor>
-                    <entityTabuSize>5</entityTabuSize>
-                </acceptor>
-
-                <forager>
-                    <acceptedCountLimit>1000</acceptedCountLimit>
-                </forager>
+                <localSearchType>LATE_ACCEPTANCE</localSearchType>
             </localSearch>
         </solver>
     </solverBenchmark>
     
-    <solverBenchmark>
-        <name>Simulated Annealing</name>
-        <solver>
-            <!-- Simulated Annealing specific solver configuration -->
-            <localSearch>
-                <unionMoveSelector>        
-                    <changeMoveSelector/>
-                    <swapMoveSelector/>          
-                    <pillarChangeMoveSelector>
-                        <pillarSelector>
-                            <subPillarEnabled>true</subPillarEnabled>
-                            <minimumSubPillarSize>2</minimumSubPillarSize>
-                            <maximumSubPillarSize>4</maximumSubPillarSize>
-                        </pillarSelector>
-                    </pillarChangeMoveSelector>          
-                    <pillarSwapMoveSelector>
-                        <pillarSelector>
-                            <subPillarEnabled>true</subPillarEnabled>
-                            <minimumSubPillarSize>2</minimumSubPillarSize>
-                            <maximumSubPillarSize>4</maximumSubPillarSize>
-                        </pillarSelector>
-                    </pillarSwapMoveSelector>
-                </unionMoveSelector>
- 
-                <acceptor>
-                    <simulatedAnnealingStartingTemperature>2hard/100soft</simulatedAnnealingStartingTemperature>
-                </acceptor>
+    <!--
+    <solverBenchmarkBluePrint>
+        <solverBenchmarkBluePrintType>EVERY_CONSTRUCTION_HEURISTIC_TYPE</solverBenchmarkBluePrintType>
+    </solverBenchmarkBluePrint>
+    -->
 
-                <forager>
-                    <acceptedCountLimit>1</acceptedCountLimit>
-                </forager>
-            </localSearch>
-        </solver>
-    </solverBenchmark>
-    
-    <solverBenchmark>
-        <name>Late Acceptance</name>
-        <solver>
-            <!-- Late Acceptance specific solver configuration -->
-            <localSearch>
-                <unionMoveSelector>        
-                    <changeMoveSelector/>
-                    <swapMoveSelector/>          
-                    <pillarChangeMoveSelector>
-                        <pillarSelector>
-                            <subPillarEnabled>true</subPillarEnabled>
-                            <minimumSubPillarSize>2</minimumSubPillarSize>
-                            <maximumSubPillarSize>4</maximumSubPillarSize>
-                        </pillarSelector>
-                    </pillarChangeMoveSelector>         
-                    <pillarSwapMoveSelector>
-                        <pillarSelector>
-                            <subPillarEnabled>true</subPillarEnabled>
-                            <minimumSubPillarSize>2</minimumSubPillarSize>
-                            <maximumSubPillarSize>4</maximumSubPillarSize>
-                        </pillarSelector>
-                    </pillarSwapMoveSelector>
-                </unionMoveSelector>
- 
-                <acceptor>
-                    <lateAcceptanceSize>3</lateAcceptanceSize>
-                </acceptor>
-
-                <forager>
-                    <acceptedCountLimit>1</acceptedCountLimit>
-                </forager>
-            </localSearch>
-        </solver>
-    </solverBenchmark>                                        
-                                                                                                                                                                               
 </plannerBenchmark>

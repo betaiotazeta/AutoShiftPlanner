@@ -52,13 +52,14 @@ public class AspApp extends javax.swing.JFrame {
     public AspApp() {
 
         business = new Business(8.5, 21, 7);
-        table = new Table(49, 25);
+        table = new Table(49, 25, business);
         configurator = new Configurator();
 
         /* testing
         table.printIdEmployee();
         table.printIdPeriod();
         table.printWorked();
+        table.printTime();
         */
         
         staff = new ArrayList<Employee>();
@@ -121,6 +122,8 @@ public class AspApp extends javax.swing.JFrame {
         breakLenght_jSpinner = new javax.swing.JSpinner();
         employeesPerPeriod_jSpinner = new javax.swing.JSpinner();
         shiftLenghtMin_jSpinner = new javax.swing.JSpinner();
+        overnightRest_jCheckBox = new javax.swing.JCheckBox();
+        overnightRest_jSpinner = new javax.swing.JSpinner();
         jPanel2 = new javax.swing.JPanel();
         tablePanel1 = new org.betaiotazeta.autoshiftplanner.TablePanel(this);
         jPanel21 = new javax.swing.JPanel();
@@ -283,7 +286,7 @@ public class AspApp extends javax.swing.JFrame {
                     .addComponent(hoursPerWeek_jLabel)
                     .addComponent(hoursPerWeek_jSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(removeEmployee_jButton)
@@ -292,6 +295,8 @@ public class AspApp extends javax.swing.JFrame {
         );
 
         jScrollPane2.setBorder(javax.swing.BorderFactory.createTitledBorder("Constraints"));
+
+        jPanel12.setPreferredSize(new java.awt.Dimension(347, 370));
 
         hoursPerWeek_jCheckbox.setSelected(true);
         hoursPerWeek_jCheckbox.setText("Hours per week:");
@@ -329,6 +334,11 @@ public class AspApp extends javax.swing.JFrame {
 
         shiftLenghtMin_jSpinner.setModel(new javax.swing.SpinnerNumberModel(3.0d, 0.5d, 24.0d, 0.5d));
 
+        overnightRest_jCheckBox.setSelected(true);
+        overnightRest_jCheckBox.setText("Minimum overnight rest:");
+
+        overnightRest_jSpinner.setModel(new javax.swing.SpinnerNumberModel(12.0d, 0.0d, 24.0d, 0.5d));
+
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
@@ -347,21 +357,25 @@ public class AspApp extends javax.swing.JFrame {
                             .addComponent(breakLenght_jSpinner, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(employeesPerPeriod_jSpinner, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(hoursPerWeek_jCheckbox)
-                            .addComponent(uniformEmployeesDistribution_jCheckBox)
-                            .addComponent(mandatoryShifts_jCheckBox))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel12Layout.createSequentialGroup()
                         .addComponent(shiftsPerDay_jCheckBox)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(shiftsPerDay_jSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addComponent(shiftLenght_jCheckBox)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
                         .addComponent(shiftLenghtMin_jSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(shiftLenghtMax_jSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(shiftLenghtMax_jSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(hoursPerWeek_jCheckbox)
+                            .addComponent(mandatoryShifts_jCheckBox)
+                            .addComponent(uniformEmployeesDistribution_jCheckBox))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addComponent(overnightRest_jCheckBox)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(overnightRest_jSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
@@ -391,10 +405,14 @@ public class AspApp extends javax.swing.JFrame {
                     .addComponent(employeesPerPeriod_jCheckBox)
                     .addComponent(employeesPerPeriod_jSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(overnightRest_jCheckBox)
+                    .addComponent(overnightRest_jSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(mandatoryShifts_jCheckBox)
                 .addGap(18, 18, 18)
                 .addComponent(uniformEmployeesDistribution_jCheckBox)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(231, Short.MAX_VALUE))
         );
 
         jScrollPane2.setViewportView(jPanel12);
@@ -409,7 +427,7 @@ public class AspApp extends javax.swing.JFrame {
                     .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
+                .addComponent(jScrollPane2)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -417,9 +435,7 @@ public class AspApp extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -762,7 +778,7 @@ public class AspApp extends javax.swing.JFrame {
             workingHours = endTime - startTime;
             numberOfColumns = (int) Math.round(workingHours * 2);
 
-            table = new Table(numberOfRows, numberOfColumns);
+            table = new Table(numberOfRows, numberOfColumns, business);
 
             repaint();
 
@@ -857,9 +873,10 @@ public class AspApp extends javax.swing.JFrame {
                 // Update the GUI everytime a better solution is found
                 solver.addEventListener(new SolverEventListener<Solution>() {
                     public void bestSolutionChanged(BestSolutionChangedEvent<Solution> event) {
-                        if (event.getNewBestSolution().getScore().isSolutionInitialized()) {
+                        // if (event.getNewBestSolution().getScore().isSolutionInitialized()) {
+                            // System.out.println("A new best solution event has been fired!");
                             publish(event.getNewBestSolution());
-                        }
+                        // }
                     }
                 });
 
@@ -875,23 +892,40 @@ public class AspApp extends javax.swing.JFrame {
             @Override
             protected void process(List<Solution> chunks) {
                 Solution interimSolution = chunks.get(chunks.size() - 1);
-
+                
                 // Display the result
                 int interimHardScore = interimSolution.getScore().getHardScore();
                 int interimSoftScore = interimSolution.getScore().getSoftScore();
                 String text = (interimHardScore + " hard, " + interimSoftScore + " soft");
                 score_jLabel.setText(text);
 
-                // puts the boolean value from cells in the cellList into cells of the table
-                List<Cell> cellList = interimSolution.getCellList();
+                // Reset the table
                 int nR = table.getNumberOfRows();
                 int nC = table.getnumberOfColumns();
-                int k = -1;
                 for (int i = 0; i < nR; i++) {
                     for (int j = 0; j < nC; j++) {
-                        k = k + 1;
-                        Boolean value = cellList.get(k).getWorked();
-                        table.getCell(i, j).setWorked(value);
+                        table.getCell(i, j).setWorked(false);
+                    }
+                }
+
+                // Converts shifts into table                    
+                List<ShiftAssignment> shiftAssignmentList = interimSolution.getShiftAssignmentList();
+                for (ShiftAssignment shiftAssignment : shiftAssignmentList) {
+                    if ((shiftAssignment.getTimeGrain() != null) && (shiftAssignment.getShiftDuration() != null)) {
+                        int startingGrainOfDay = shiftAssignment.getTimeGrain().getStartingGrainOfDay();
+                        int dayOfWeek = shiftAssignment.getTimeGrain().getDay().getDayOfWeek();
+                        int durationInGrains = shiftAssignment.getShiftDuration().getDurationInGrains();
+                        Employee employee = shiftAssignment.getShift().getEmployee();
+                        int indexOfEmployee = interimSolution.getStaffScore().indexOf(employee);
+                        int i = indexOfEmployee + (dayOfWeek * staff.size());
+                        int finalGrainOfDay = startingGrainOfDay + durationInGrains;
+                        if (finalGrainOfDay >= nC) {
+                            int overflow = finalGrainOfDay - nC;
+                            finalGrainOfDay = finalGrainOfDay - overflow;
+                        }
+                        for (int j = startingGrainOfDay; j < finalGrainOfDay; j++) {
+                            table.getCell(i, j).setWorked(true);
+                        }
                     }
                 }
 
@@ -903,33 +937,54 @@ public class AspApp extends javax.swing.JFrame {
             @Override
             protected void done() {
                 try {
+                    timer.stop();
                     Solution solvedSolution = get();
+                    solution = solvedSolution;
 
                     // Display the result
                     int solvedHardScore = solvedSolution.getScore().getHardScore();
                     int solvedSoftScore = solvedSolution.getScore().getSoftScore();
                     String message = "Solved score: " + solvedHardScore + " hard, " + solvedSoftScore + " soft.";
                     JOptionPane.showMessageDialog(aspApp, message, "Information", JOptionPane.INFORMATION_MESSAGE);
-
-                    // inserts the boolean values from the cells in the cellList into the table cells
-                    List<Cell> cellaList = solvedSolution.getCellList();
+                  
+                    // Reset the table
                     int nR = table.getNumberOfRows();
                     int nC = table.getnumberOfColumns();
-                    int k = -1;
                     for (int i = 0; i < nR; i++) {
                         for (int j = 0; j < nC; j++) {
-                            k = k + 1;
-                            Boolean value = cellaList.get(k).getWorked();
-                            table.getCell(i, j).setWorked(value);
+                            table.getCell(i, j).setWorked(false);
                         }
                     }
-
+                    
+                    // Converts shifts into table
+                    int overlappingShiftsCounter = 0; // only used for final report
+                    List<ShiftAssignment> shiftAssignmentList = solution.getShiftAssignmentList();
+                    for (ShiftAssignment shiftAssignment : shiftAssignmentList) {
+                        if ((shiftAssignment.getTimeGrain() != null) && (shiftAssignment.getShiftDuration() != null)) {
+                            int startingGrainOfDay = shiftAssignment.getTimeGrain().getStartingGrainOfDay();
+                            int dayOfWeek = shiftAssignment.getTimeGrain().getDay().getDayOfWeek();
+                            int durationInGrains = shiftAssignment.getShiftDuration().getDurationInGrains();
+                            Employee employee = shiftAssignment.getShift().getEmployee();
+                            int indexOfEmployee = solution.getStaffScore().indexOf(employee);
+                            int i = indexOfEmployee + (dayOfWeek * staff.size());
+                            int finalGrainOfDay = startingGrainOfDay + durationInGrains;
+                            if (finalGrainOfDay >= nC) {
+                                int overflow = finalGrainOfDay - nC;
+                                finalGrainOfDay = finalGrainOfDay - overflow;
+                            }
+                            for (int j = startingGrainOfDay; j < finalGrainOfDay; j++) {
+                                if (table.getCell(i, j).isWorked()) {
+                                    overlappingShiftsCounter++;
+                                }
+                                table.getCell(i, j).setWorked(true);
+                            }
+                        }
+                    }
+                    
                     updateHoursWorked();
                     updateLabelHoursWorked();
                     repaint();
-                    solution = solvedSolution;
 
-                    timer.stop();
                     solve_jButton.setEnabled(true);
                     stop_jButton.setEnabled(false);
                     createNewBusiness_jButton.setEnabled(true);
@@ -939,12 +994,49 @@ public class AspApp extends javax.swing.JFrame {
                     jProgressBar.setValue(jProgressBar.getMinimum());
                     jProgressBar.setIndeterminate(false);
 
+
+                    // Generating report to stout
+                    System.out.println("\nGenerating report:");
+
+                    int shiftAssignmentListSize = shiftAssignmentList.size();
+                    System.out.println("Quantity of planning entities (shiftAssignment): " + shiftAssignmentListSize);
+                    int timeGrainListSize = solution.getTimeGrainList().size();
+                    System.out.println("Quantity of planning values (timeGrain): " + timeGrainListSize);
+                    int shiftDurationListSize = solution.getShiftDurationList().size();
+                    System.out.println("Quantity of planning values (shiftDuration): " + shiftDurationListSize);
+                    System.out.println("INFO: " + overlappingShiftsCounter + " cells have overlapping shifts!");
+
+                    // Normalizing assigned timeGrains and shiftDurations in shiftAssignments
+                    // WARNING: information loss can occur if setting are incopatible!
+                    // Un-set all assigned timeGrains and shiftDurations from shiftAssignments
+                    for (ShiftAssignment shiftAssignment : shiftAssignmentList) {
+                        shiftAssignment.setTimeGrain(null);
+                        shiftAssignment.setShiftDuration(null);
+                    }
+                    
+                    // Re-assign timeGrains and shiftDurations to shiftAssignments according to table
+                    convertTableIntoShifts();
+                    
+                    // Print assignments
+                    int i = 0;
+                    for (ShiftAssignment shiftAssignment : shiftAssignmentList) {
+                        Shift shift = shiftAssignment.getShift();
+                        TimeGrain timeGrain = shiftAssignment.getTimeGrain();
+                        ShiftDuration shiftDuration = shiftAssignment.getShiftDuration();
+                        System.out.println("shiftAssignment: (indexInArray-" + i + ")" + " with shift " + shift.toString() + ", has timeGrain: " + timeGrain + ", has shiftDuration: " + shiftDuration);
+                        i = i + 1;
+                    }
+
                 } catch (InterruptedException ex) {
                     String message = ex.getMessage();
                     JOptionPane.showMessageDialog(aspApp, message, "Error", JOptionPane.ERROR_MESSAGE);
+                    System.out.println(message);
+                    ex.printStackTrace();
                 } catch (ExecutionException ex) {
                     String message = ex.getMessage();
                     JOptionPane.showMessageDialog(aspApp, message, "Error", JOptionPane.ERROR_MESSAGE);
+                    System.out.println(message);
+                    ex.printStackTrace();
                 }
             }
         };
@@ -986,22 +1078,11 @@ public class AspApp extends javax.swing.JFrame {
             return;
         }
         
-        staff = solution.getStaff();
-        table = solution.getTable();
+        staff = solution.getStaffScore();
+        table = solution.getTableScore();
         business = solution.getBusiness();
         configurator = solution.getConfigurator();
-        
-        // anti null check
-        // attention: values of nR and nC start at 0
-        for (int i = 0; i < table.getNumberOfRows(); i++) {
-            for (int j = 0; j < table.getnumberOfColumns(); j++) {
-                Cell cell = table.getCell(i, j);
-                if (cell.getWorked() == null) {
-                    cell.setWorked(false);
-                }
-            }
-        }
-        
+               
         startTime_jSpinner.setValue(business.getStartTime());
         endTime_jSpinner.setValue(business.getEndTime());
         
@@ -1149,6 +1230,15 @@ public class AspApp extends javax.swing.JFrame {
         Logger logger = LoggerFactory.getLogger(AspApp.class);
         logger.info("Hello World");
          */
+        
+        // display benchmark aggregator
+        /*
+        if (false) {
+            PlannerBenchmarkFactory plannerBenchmarkFactory = PlannerBenchmarkFactory.createFromXmlResource("org/betaiotazeta/autoshiftplanner/benchmark/aspBenchmarkConfig.xml");
+            BenchmarkAggregatorFrame.createAndDisplay(plannerBenchmarkFactory);
+        }
+        */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 aspApp = new AspApp();
@@ -1283,6 +1373,7 @@ public class AspApp extends javax.swing.JFrame {
         mandatoryShifts_jCheckBox.setSelected(configurator.isMandatoryShiftsCheck());
         shiftLenght_jCheckBox.setSelected(configurator.isShiftLenghtCheck());
         shiftsPerDay_jCheckBox.setSelected(configurator.isShiftsPerDayCheck());
+        overnightRest_jCheckBox.setSelected(configurator.isOvernightRestCheck());
         uniformEmployeesDistribution_jCheckBox.setSelected(configurator.isUniformEmployeesDistributionCheck());
         
         breakLenght_jSpinner.setValue(configurator.getBreakLenght());
@@ -1291,6 +1382,7 @@ public class AspApp extends javax.swing.JFrame {
         shiftLenghtMax_jSpinner.setValue(configurator.getShiftLenghtMax());
         shiftLenghtMin_jSpinner.setValue(configurator.getShiftLenghtMin());
         shiftsPerDay_jSpinner.setValue(configurator.getShiftsPerDay());
+        overnightRest_jSpinner.setValue(configurator.getOvernightRest());
     }
 
     // Update graphic components related to the configurator
@@ -1301,7 +1393,8 @@ public class AspApp extends javax.swing.JFrame {
         configurator.setHoursPerWeekCheck(hoursPerWeek_jCheckbox.isSelected());
         configurator.setMandatoryShiftsCheck(mandatoryShifts_jCheckBox.isSelected());               
         configurator.setShiftLenghtCheck(shiftLenght_jCheckBox.isSelected());               
-        configurator.setShiftsPerDayCheck(shiftsPerDay_jCheckBox.isSelected());              
+        configurator.setShiftsPerDayCheck(shiftsPerDay_jCheckBox.isSelected());
+        configurator.setOvernightRestCheck(overnightRest_jCheckBox.isSelected());
         configurator.setUniformEmployeesDistributionCheck(uniformEmployeesDistribution_jCheckBox.isSelected());
                
         configurator.setBreakLenght((double) breakLenght_jSpinner.getValue());
@@ -1309,7 +1402,8 @@ public class AspApp extends javax.swing.JFrame {
         configurator.setHoursPerDay((double) hoursPerDay_jSpinner.getValue());
         configurator.setShiftLenghtMax((double) shiftLenghtMax_jSpinner.getValue());
         configurator.setShiftLenghtMin((double) shiftLenghtMin_jSpinner.getValue());
-        configurator.setShiftsPerDay((int) shiftsPerDay_jSpinner.getValue());                
+        configurator.setShiftsPerDay((int) shiftsPerDay_jSpinner.getValue());
+        configurator.setOvernightRest((double) overnightRest_jSpinner.getValue());
     }
     
     // Update the hour labels for everyone
@@ -1379,7 +1473,7 @@ public class AspApp extends javax.swing.JFrame {
         // attention: values of nR and nC start at 0
         for (int i = 0; i < nR; i++) {
             for (int j = 0; j < nC; j++) {
-                status = table.getCell(i, j).getWorked();
+                status = table.getCell(i, j).isWorked();
                 if (status) {
                     idEmployee = table.getCell(i, j).getIdEmployee();
                     // IdEmployee count starts at 1.
@@ -1404,6 +1498,88 @@ public class AspApp extends javax.swing.JFrame {
             }
         });
         timer.start();
+    }
+
+    // Converts data from cells (in table) into shiftAssignment (in solution)
+    public void convertTableIntoShifts() {
+        int nR = table.getNumberOfRows();
+        int nC = table.getnumberOfColumns();
+
+        List<ShiftAssignment> shiftAssignmentList = solution.getShiftAssignmentList();
+        List<ShiftDuration> shiftDurationList = solution.getShiftDurationList();
+
+        for (int i = 0; i < nR; i++) {
+            for (int j = 0; j < nC; j++) {
+                ShiftDuration shiftDuration;
+                boolean status = false;
+                int shiftStart = -1;
+                status = table.getCell(i, j).isWorked();
+                while (status) {
+                    if (shiftStart == -1) {
+                        shiftStart = j;
+                    }
+                    j = j + 1;
+                    if (j < nC) {
+                        status = table.getCell(i, j).isWorked();
+                    } else {
+                        status = false;
+                    }
+                }
+                if (shiftStart == -1) {
+                    // do nothing
+                } else {
+                    // convert into shift
+                    //  idEployee needs to be corrected because indexOfEmployee starts at 0: -1
+                    int idEmployee = table.getCell(i, shiftStart).getIdEmployee() - 1;
+                    //  periods and timeGrains are essentially the same thing
+                    //  idPeriod needs to be corrected because grainIndex starts at 0: -1
+                    int grainIndex = table.getCell(i, shiftStart).getIdPeriod() - 1;
+                    int durationInGrains = (j - shiftStart); // column j means first non worked cell
+
+                    boolean done = false;
+                    int index = 0;
+                    int maxIndex = shiftDurationList.size() - 1;
+                    do {
+                        shiftDuration = shiftDurationList.get(index);
+                        if (durationInGrains == shiftDuration.getDurationInGrains()) {
+                            done = true;
+                            index = 0;
+                        }
+                        index++;
+                        if (maxIndex < index) {
+                            String message = "A shift has a length of: " + durationInGrains + " grains, which is uncompatible with constraints settings.";
+                            JOptionPane.showMessageDialog(aspApp, message, "Warning", JOptionPane.WARNING_MESSAGE);
+                            done = true;
+                            return;
+                        }
+                    } while (!done);
+
+                    done = false;
+                    index = 0;
+                    maxIndex = shiftAssignmentList.size() - 1;
+                    do {
+                        ShiftAssignment shiftAssignment = shiftAssignmentList.get(index);
+                        int indexOfEmployee = solution.getStaffScore().indexOf(shiftAssignment.getShift().getEmployee());
+                        if ((idEmployee == indexOfEmployee)
+                                && ((shiftAssignment.getTimeGrain() == null) || (shiftAssignment.getShiftDuration() == null))) {
+                            // assigning...
+                            shiftAssignment.setTimeGrain(solution.getTimeGrainList().get(grainIndex));
+                            shiftAssignment.setShiftDuration(shiftDuration);
+                            done = true;
+                            index = 0;
+                        }
+                        index++;
+                        if (maxIndex < index) {
+                            String employeeName = solution.getStaffScore().get(idEmployee).getName();
+                            String message = "Cannot assign a shift! " + "Employee: " + employeeName + ", grainIndex: " + grainIndex + ", duration:" + durationInGrains + ". Please, check settings.";
+                            JOptionPane.showMessageDialog(aspApp, message, "Warning", JOptionPane.WARNING_MESSAGE);
+                            done = true;
+                            return;
+                        }
+                    } while (!done);
+                }
+            }
+        }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1456,6 +1632,8 @@ public class AspApp extends javax.swing.JFrame {
     private javax.swing.JRadioButton mandatory_jRadioButton;
     private javax.swing.JLabel name_jLabel;
     private javax.swing.JMenuItem openMenu;
+    private javax.swing.JCheckBox overnightRest_jCheckBox;
+    private javax.swing.JSpinner overnightRest_jSpinner;
     private javax.swing.JButton removeEmployee_jButton;
     private javax.swing.JButton reset_jButton;
     private javax.swing.JMenuItem saveMenu;

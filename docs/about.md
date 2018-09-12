@@ -18,6 +18,12 @@ This application originated from a request of an employee to switch from a full 
 There are situations in which no traditional planner can automatically address a complex problem, no spreadsheet, in fact no one can. Auto Shift Planner will try to give you a possible solution if it exists.
 ```
 
+- Auto Shift Planner version 0.1.0+:
+  - Since for a work shift existence, quantity, starting and ending time (etc.), an abstraction with greater detail instead of just morning or night shift of predefined type is needed, the application uses, as planning entity, "half hour time unit for each employee" objects (we call them cells), to which Optaplanner assigns a property value from a pair of Boolean as planning variable (employee is present - true or not - false). Although this domain model (a **binary variable anti-pattern**) is *easy* to understand and the graphical visualization of the solving process can be *instructive*, it is not efficient.
+
+- Auto Shift Planner version 0.2.0+:
+  - **TimeGrain Pattern** has been implemented. We have a shift assignment as planning entity to which Optaplanner assigns *two* planning variables: a time grain (when the shift starts) and a duration (how long it will last). Since we don't know how many shifts an employee will have we over provision them and make them *nullable*. It's more scalable (the search space is a lot smaller) and it's easier to navigate to feasible regions with generic moves.
+
 Further information on this topic can be found on the [Optaplanner](https://www.optaplanner.org/) website. This application uses Optaplanner, a professional grade constraint satisfaction solver, as a planning engine.
 
 [back to Main page](./)
