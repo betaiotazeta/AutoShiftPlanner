@@ -153,7 +153,7 @@ public class TablePanel extends javax.swing.JPanel {
                 repaint();
 
             } else {
-                String message = "Woops... a conflict occurred!";
+                String message = "Woops... a conflict occurred! Please, check Editing mode.";
                 JOptionPane.showMessageDialog(aspApp, message, "Warning", JOptionPane.WARNING_MESSAGE);
             }
         }
@@ -236,7 +236,7 @@ public class TablePanel extends javax.swing.JPanel {
                     repaint();
 
                 } else {
-                    String message = "Woops... a conflict occurred!";
+                    String message = "Woops... a conflict occurred! Please, check Editing mode.";
                     JOptionPane.showMessageDialog(aspApp, message, "Warning", JOptionPane.WARNING_MESSAGE);
                 }
             }

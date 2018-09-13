@@ -171,8 +171,10 @@ public class AspApp extends javax.swing.JFrame {
         startTime_jLabel.setText("Opening time:");
 
         startTime_jSpinner.setModel(new javax.swing.SpinnerNumberModel(8.5d, 0.0d, 24.0d, 0.5d));
+        startTime_jSpinner.setToolTipText("All values are expressed in hour units: e.g. for 8 hours and 30 minutes set 8.5, thanks!");
 
         endTime_jSpinner.setModel(new javax.swing.SpinnerNumberModel(21.0d, 0.0d, 24.0d, 0.5d));
+        endTime_jSpinner.setToolTipText("All values are expressed in hour units: e.g. for 8 hours and 30 minutes set 8.5, thanks!");
 
         createNewBusiness_jButton.setText("Initialize");
         createNewBusiness_jButton.addActionListener(new java.awt.event.ActionListener() {
@@ -323,21 +325,26 @@ public class AspApp extends javax.swing.JFrame {
         uniformEmployeesDistribution_jCheckBox.setText("Uniformly distributed employees:");
 
         hoursPerDay_jSpinner.setModel(new javax.swing.SpinnerNumberModel(8.0d, 0.5d, 24.0d, 0.5d));
+        hoursPerDay_jSpinner.setToolTipText("All values are expressed in hour units: e.g. for 8 hours and 30 minutes set 8.5, thanks!");
 
         shiftsPerDay_jSpinner.setModel(new javax.swing.SpinnerNumberModel(2, 1, 24, 1));
 
         shiftLenghtMax_jSpinner.setModel(new javax.swing.SpinnerNumberModel(6.0d, 0.5d, 24.0d, 0.5d));
+        shiftLenghtMax_jSpinner.setToolTipText("All values are expressed in hour units: e.g. for 8 hours and 30 minutes set 8.5, thanks!");
 
         breakLenght_jSpinner.setModel(new javax.swing.SpinnerNumberModel(1.0d, 0.5d, 24.0d, 0.5d));
+        breakLenght_jSpinner.setToolTipText("All values are expressed in hour units: e.g. for 8 hours and 30 minutes set 8.5, thanks!");
 
         employeesPerPeriod_jSpinner.setModel(new javax.swing.SpinnerNumberModel(2, 1, 9, 1));
 
         shiftLenghtMin_jSpinner.setModel(new javax.swing.SpinnerNumberModel(3.0d, 0.5d, 24.0d, 0.5d));
+        shiftLenghtMin_jSpinner.setToolTipText("All values are expressed in hour units: e.g. for 8 hours and 30 minutes set 8.5, thanks!");
 
         overnightRest_jCheckBox.setSelected(true);
         overnightRest_jCheckBox.setText("Minimum overnight rest:");
 
         overnightRest_jSpinner.setModel(new javax.swing.SpinnerNumberModel(12.0d, 0.0d, 24.0d, 0.5d));
+        overnightRest_jSpinner.setToolTipText("All values are expressed in hour units: e.g. for 8 hours and 30 minutes set 8.5, thanks!");
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);

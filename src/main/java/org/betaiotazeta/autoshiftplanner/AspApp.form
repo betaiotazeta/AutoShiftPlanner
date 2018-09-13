@@ -245,6 +245,7 @@
                     <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                       <SpinnerModel initial="8.5" maximum="24.0" minimum="0.0" numberType="java.lang.Double" stepSize="0.5" type="number"/>
                     </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="All values are expressed in hour units: e.g. for 8 hours and 30 minutes set 8.5, thanks!"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JSpinner" name="endTime_jSpinner">
@@ -252,6 +253,7 @@
                     <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                       <SpinnerModel initial="21.0" maximum="24.0" minimum="0.0" numberType="java.lang.Double" stepSize="0.5" type="number"/>
                     </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="All values are expressed in hour units: e.g. for 8 hours and 30 minutes set 8.5, thanks!"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="createNewBusiness_jButton">
@@ -559,6 +561,7 @@
                         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                           <SpinnerModel initial="8.0" maximum="24.0" minimum="0.5" numberType="java.lang.Double" stepSize="0.5" type="number"/>
                         </Property>
+                        <Property name="toolTipText" type="java.lang.String" value="All values are expressed in hour units: e.g. for 8 hours and 30 minutes set 8.5, thanks!"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JSpinner" name="shiftsPerDay_jSpinner">
@@ -573,6 +576,7 @@
                         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                           <SpinnerModel initial="6.0" maximum="24.0" minimum="0.5" numberType="java.lang.Double" stepSize="0.5" type="number"/>
                         </Property>
+                        <Property name="toolTipText" type="java.lang.String" value="All values are expressed in hour units: e.g. for 8 hours and 30 minutes set 8.5, thanks!"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JSpinner" name="breakLenght_jSpinner">
@@ -580,6 +584,7 @@
                         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                           <SpinnerModel initial="1.0" maximum="24.0" minimum="0.5" numberType="java.lang.Double" stepSize="0.5" type="number"/>
                         </Property>
+                        <Property name="toolTipText" type="java.lang.String" value="All values are expressed in hour units: e.g. for 8 hours and 30 minutes set 8.5, thanks!"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JSpinner" name="employeesPerPeriod_jSpinner">
@@ -594,6 +599,7 @@
                         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                           <SpinnerModel initial="3.0" maximum="24.0" minimum="0.5" numberType="java.lang.Double" stepSize="0.5" type="number"/>
                         </Property>
+                        <Property name="toolTipText" type="java.lang.String" value="All values are expressed in hour units: e.g. for 8 hours and 30 minutes set 8.5, thanks!"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JCheckBox" name="overnightRest_jCheckBox">
@@ -607,6 +613,7 @@
                         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                           <SpinnerModel initial="12.0" maximum="24.0" minimum="0.0" numberType="java.lang.Double" stepSize="0.5" type="number"/>
                         </Property>
+                        <Property name="toolTipText" type="java.lang.String" value="All values are expressed in hour units: e.g. for 8 hours and 30 minutes set 8.5, thanks!"/>
                       </Properties>
                     </Component>
                   </SubComponents>

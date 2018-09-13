@@ -33,6 +33,7 @@ It is a detailed rule based schedule generator.
     - have some eventual breaks of the desired break duration
     - minimum and maximum quantity of consecutive hours
     - minimum amount of employees present at the same time
+    - minimum amount of hours for overnight rest
     - all mandatory shifts must be satisfied
     - not too much or not enough staff present
 - no installation needed
@@ -68,8 +69,9 @@ It is a detailed rule based schedule generator.
 
 1. You need to have **Java** which you can find [here](https://java.com)
 1. Click "download application" (at the top of the screen)
-1. Download the latest file named: AutoShiftPlanner-X.X.X-jar-with-dependencies.jar
-1. Double click the icon or type "java -jar filename" in a terminal
+1. Download the latest file named: AutoShiftPlanner-X.X.X-jar-with-dependencies.jar (e.g. AutoShiftPlanner-0.2.0-jar-with-dependencies.jar)
+1. Double click the icon or type "java -jar AutoShiftPlanner-X.X.X-jar-with-dependencies.jar" in a terminal (or the Command Prompt)
+1. How to open the Command Prompt in Windows: click Start, scroll down and expand the “Windows System” folder, click “Command Prompt”
 
 * * *
 
@@ -91,7 +93,7 @@ Released under: Gnu Public License, version 3
   - Enabling "Uniformly distributed employees" (the only soft score constraint) will slow down the solving speed.
 
 - To do 
-  - Domain Model could be improved.
+  - Domain Model could be further improved.
   - A shift is fine tuned with half hour time units: this length should be made configurable in GUI.
   - Implement score calculation using the Drools rule engine.
   - Please contact me if you are in any way interested in this project. Thanks.

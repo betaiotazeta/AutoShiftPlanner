@@ -295,7 +295,7 @@ public class AspEasyScoreCalculator implements EasyScoreCalculator<Solution> {
                         int calculatedRest = (1440 - lastWorkedCellMinute) + firstWorkedCellMinute;
                         if (calculatedRest < overnightRest) {
                             // punishment in "quantity of missing cells" 
-                            hardScore = hardScore - ((720 - calculatedRest) / 30);
+                            hardScore = hardScore - ((overnightRest - calculatedRest) / 30);
                         }
                         for (int j = (nC - 1); j > -1; j--) {
                             Cell cell = tableScore.getCell(i, j);
