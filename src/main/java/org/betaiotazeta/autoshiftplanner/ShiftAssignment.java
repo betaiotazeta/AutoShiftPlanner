@@ -2,11 +2,13 @@ package org.betaiotazeta.autoshiftplanner;
 
 import org.optaplanner.core.api.domain.entity.PlanningEntity;
 import org.optaplanner.core.api.domain.variable.PlanningVariable;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
  *
  * @author betaiotazeta
  */
+@XStreamAlias("shiftAssignment")
 @PlanningEntity
 public class ShiftAssignment {
 

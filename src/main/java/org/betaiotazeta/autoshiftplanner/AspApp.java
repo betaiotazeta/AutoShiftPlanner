@@ -39,6 +39,9 @@ import org.optaplanner.core.api.solver.SolverFactory;
 import org.optaplanner.core.api.solver.event.BestSolutionChangedEvent;
 import org.optaplanner.core.api.solver.event.SolverEventListener;
 import org.optaplanner.persistence.xstream.impl.domain.solution.XStreamSolutionFileIO;
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.security.ArrayTypePermission;
+import com.thoughtworks.xstream.security.NoTypePermission;
 
 /**
  *
@@ -762,10 +765,17 @@ public class AspApp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createNewBusiness_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewBusiness_jButtonActionPerformed
-        try {
+        try {            
+            updateConfiguratorFromGui();
+            
             double startTime = (double) startTime_jSpinner.getValue();
-            double endTime = (double) endTime_jSpinner.getValue();
+            startTime = (Math.round(startTime * 2))/2.0;
+            startTime_jSpinner.setValue(startTime);
 
+            double endTime = (double) endTime_jSpinner.getValue();
+            endTime = (Math.round(endTime * 2))/2.0;
+            endTime_jSpinner.setValue(endTime);
+                        
             if (startTime >= endTime) {
                 throw new IllegalArgumentException("End of business hours lower than the start time.");
             }
@@ -1068,35 +1078,61 @@ public class AspApp extends javax.swing.JFrame {
     }//GEN-LAST:event_stop_jButtonActionPerformed
 
     private void openMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuActionPerformed
-        // Load solution       
-        
-        File dataDir = new File("data/unsolved");
-        JFileChooser chooser = new JFileChooser(dataDir);
-        FileNameExtensionFilter filter = new FileNameExtensionFilter(
-        "XML Files", "xml");
-        chooser.setFileFilter(filter);
-        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-            File inputSolutionFile = chooser.getSelectedFile();
-            XStreamSolutionFileIO myXStreamSolutionFileIO = new XStreamSolutionFileIO(Solution.class);
-            // XStream xstream = myXStreamSolutionFileIO.getXStream();
-            // xstream.processAnnotations(Solution.class);      
-            solution = (Solution) myXStreamSolutionFileIO.read(inputSolutionFile);
-        } else {
-            return;
+        // Load solution
+
+        try {
+            File dataDir = new File("data/unsolved");
+            JFileChooser chooser = new JFileChooser(dataDir);
+            FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                    "XML Files", "xml");
+            chooser.setFileFilter(filter);
+            if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                File inputSolutionFile = chooser.getSelectedFile();
+                XStreamSolutionFileIO myXStreamSolutionFileIO = new XStreamSolutionFileIO(Solution.class);
+                // customizing XStream
+                XStream xstream = myXStreamSolutionFileIO.getXStream();
+                // xstream.aliasPackage("package", "org.betaiotazeta.autoshiftplanner");
+                // xstream.processAnnotations(Solution.class);      
+
+                // The inputSolutionFile needs to come from a trusted source:
+                // if it contains malicious data, it can be exploited.
+                // The XStreamSolutionFileIO disables the XStream security framework,
+                // so it just works out of the box.
+                // We use XStreamSolutionFileIO.getXStream() to re-enable the security
+                // framework and explicitly whitelist all marshalled classes.
+                
+                // clear out existing permissions and set own ones
+                xstream.addPermission(NoTypePermission.NONE);
+                // allow some basics
+                // // xstream.addPermission(NullPermission.NULL);
+                // // xstream.addPermission(PrimitiveTypePermission.PRIMITIVES);
+                xstream.addPermission(ArrayTypePermission.ARRAYS);
+                // allow any type from the same package
+                xstream.allowTypesByWildcard(new String[]{
+                    AspApp.class.getPackage().getName() + ".*"
+                });
+
+                solution = (Solution) myXStreamSolutionFileIO.read(inputSolutionFile);
+            } else {
+                return;
+            }
+
+            staff = solution.getStaffScore();
+            table = solution.getTableScore();
+            business = solution.getBusiness();
+            configurator = solution.getConfigurator();
+
+            startTime_jSpinner.setValue(business.getStartTime());
+            endTime_jSpinner.setValue(business.getEndTime());
+
+            updateGuiFromConfigurator();
+            updateLabelHoursWorked();
+            fillListBox();
+            repaint();
+        } catch (Exception e) {
+            String message = e.getMessage();
+            JOptionPane.showMessageDialog(aspApp, message, "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
-        staff = solution.getStaffScore();
-        table = solution.getTableScore();
-        business = solution.getBusiness();
-        configurator = solution.getConfigurator();
-               
-        startTime_jSpinner.setValue(business.getStartTime());
-        endTime_jSpinner.setValue(business.getEndTime());
-        
-        updateGuiFromConfigurator();
-        updateLabelHoursWorked();
-        fillListBox();
-        repaint();
     }//GEN-LAST:event_openMenuActionPerformed
 
     private void saveMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuActionPerformed
@@ -1111,9 +1147,15 @@ public class AspApp extends javax.swing.JFrame {
         chooser.setFileFilter(filter);
         if (chooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
             File outputSolutionFile = chooser.getSelectedFile();
+            String filePath = outputSolutionFile.getAbsolutePath();
+            if (!filePath.toLowerCase().endsWith(".xml")) {
+                filePath += ".xml";
+                outputSolutionFile = new File(filePath);
+            }
             XStreamSolutionFileIO myXStreamSolutionFileIO = new XStreamSolutionFileIO(Solution.class);
             // XStream xstream = myXStreamSolutionFileIO.getXStream();
-            // xstream.processAnnotations(Solution.class);      
+            // xstream.aliasPackage("package", "org.betaiotazeta.autoshiftplanner");
+            // xstream.processAnnotations(Solution.class);
             myXStreamSolutionFileIO.write(solution, outputSolutionFile);
         }
 
@@ -1124,40 +1166,57 @@ public class AspApp extends javax.swing.JFrame {
     }//GEN-LAST:event_saveMenuActionPerformed
 
     private void solverConfigMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solverConfigMenuActionPerformed
-        // SIMPLE NO-CONFIG BENCHMARK (uses Solver Config)        
-        File checkJar = new File("data"); // folder data is absent in a jar file
-        if (checkJar.exists()) {
-            SolverFactory<Solution> solverFactory = SolverFactory.createFromXmlResource("org/betaiotazeta/autoshiftplanner/solver/aspSolverConfig.xml");
-            PlannerBenchmarkFactory benchmarkFactory = PlannerBenchmarkFactory.createFromSolverFactory(solverFactory);        
-            File inputSolutionFile = new File("data/unsolved/asp_7employees_forbidden_mandatory.xml");
-            XStreamSolutionFileIO myXStreamSolutionFileIO = new XStreamSolutionFileIO(Solution.class);
-            Solution dataset1 = (Solution) myXStreamSolutionFileIO.read(inputSolutionFile);
-            // Solution dataset2 = ...;
-            // Solution dataset3 = ...;
-            PlannerBenchmark plannerBenchmark = benchmarkFactory.buildPlannerBenchmark(dataset1);
-            plannerBenchmark.benchmark();
+        // SIMPLE NO-CONFIG BENCHMARK (uses Solver Config)
+        if (!isBenchmarkingAllowed()) {
+            return;
         }
+
+        SolverFactory<Solution> solverFactory = SolverFactory.createFromXmlResource("org/betaiotazeta/autoshiftplanner/solver/aspSolverConfig.xml");
+        PlannerBenchmarkFactory benchmarkFactory = PlannerBenchmarkFactory.createFromSolverFactory(solverFactory);
+        File inputSolutionFile = new File("data/unsolved/asp_7employees_forbidden_mandatory.xml");
+        XStreamSolutionFileIO myXStreamSolutionFileIO = new XStreamSolutionFileIO(Solution.class);
+        Solution dataset1 = (Solution) myXStreamSolutionFileIO.read(inputSolutionFile);
+        // Solution dataset2 = ...;
+        // Solution dataset3 = ...;
+        PlannerBenchmark plannerBenchmark = benchmarkFactory.buildPlannerBenchmark(dataset1);
+        plannerBenchmark.benchmark();
     }//GEN-LAST:event_solverConfigMenuActionPerformed
 
     private void benchmarkConfigMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_benchmarkConfigMenuActionPerformed
         // USES aspBenchmarkConfig.xml
-        File checkJar = new File("data"); // folder data is absent in a jar file
-        if (checkJar.exists()) {
-            PlannerBenchmarkFactory plannerBenchmarkFactory = PlannerBenchmarkFactory.createFromXmlResource("org/betaiotazeta/autoshiftplanner/benchmark/aspBenchmarkConfig.xml");
-            PlannerBenchmark plannerBenchmark = plannerBenchmarkFactory.buildPlannerBenchmark();
-            plannerBenchmark.benchmark();
+        if (!isBenchmarkingAllowed()) {
+            return;
         }
+
+        PlannerBenchmarkFactory plannerBenchmarkFactory = PlannerBenchmarkFactory.createFromXmlResource("org/betaiotazeta/autoshiftplanner/benchmark/aspBenchmarkConfig.xml");
+        PlannerBenchmark plannerBenchmark = plannerBenchmarkFactory.buildPlannerBenchmark();
+        plannerBenchmark.benchmark();
     }//GEN-LAST:event_benchmarkConfigMenuActionPerformed
 
     private void benchmarkConfigTemplateMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_benchmarkConfigTemplateMenuActionPerformed
         // USES Freemarker template aspBenchmarkConfigTemplate.xml.ftl
-        File checkJar = new File("data"); // folder data is absent in a jar file
-        if (checkJar.exists()) {
-            PlannerBenchmarkFactory plannerBenchmarkFactory = PlannerBenchmarkFactory.createFromFreemarkerXmlResource("org/betaiotazeta/autoshiftplanner/benchmark/aspBenchmarkConfigTemplate.xml.ftl");
-            PlannerBenchmark plannerBenchmark = plannerBenchmarkFactory.buildPlannerBenchmark();
-            plannerBenchmark.benchmark();
+        if (!isBenchmarkingAllowed()) {
+            return;
         }
+
+        PlannerBenchmarkFactory plannerBenchmarkFactory = PlannerBenchmarkFactory.createFromFreemarkerXmlResource("org/betaiotazeta/autoshiftplanner/benchmark/aspBenchmarkConfigTemplate.xml.ftl");
+        PlannerBenchmark plannerBenchmark = plannerBenchmarkFactory.buildPlannerBenchmark();
+        plannerBenchmark.benchmark();
     }//GEN-LAST:event_benchmarkConfigTemplateMenuActionPerformed
+
+    private boolean isBenchmarkingAllowed() {   
+        // bechmarking should not be available in production
+        // allowBenchmark: used to enable-disable bechmarking
+        boolean allowBenchmark = true;
+        // we don't want to allow benchmarking from a jar file
+        File checkJar = new File("data"); // folder data is absent in a jar file
+        if (!(allowBenchmark && checkJar.exists())) {
+            String message = "Benchmarking is intended and available for developers only.";
+            JOptionPane.showMessageDialog(aspApp, message, "Warning", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        return true;
+    }
 
     private void reset_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reset_jButtonActionPerformed
         // reset the boolean value field worked for all cells in the table to false
@@ -1393,24 +1452,47 @@ public class AspApp extends javax.swing.JFrame {
     }
 
     // Update graphic components related to the configurator
-    public void updateConfiguratorFromGui() {       
-        configurator.setBreakLenghtCheck(breakLenght_jCheckBox.isSelected());               
+    public void updateConfiguratorFromGui() {
+        configurator.setBreakLenghtCheck(breakLenght_jCheckBox.isSelected());
         configurator.setEmployeesPerPeriodCheck(employeesPerPeriod_jCheckBox.isSelected());
         configurator.setHoursPerDayCheck(hoursPerDay_jCheckBox.isSelected());
         configurator.setHoursPerWeekCheck(hoursPerWeek_jCheckbox.isSelected());
-        configurator.setMandatoryShiftsCheck(mandatoryShifts_jCheckBox.isSelected());               
-        configurator.setShiftLenghtCheck(shiftLenght_jCheckBox.isSelected());               
+        configurator.setMandatoryShiftsCheck(mandatoryShifts_jCheckBox.isSelected());
+        configurator.setShiftLenghtCheck(shiftLenght_jCheckBox.isSelected());
         configurator.setShiftsPerDayCheck(shiftsPerDay_jCheckBox.isSelected());
         configurator.setOvernightRestCheck(overnightRest_jCheckBox.isSelected());
         configurator.setUniformEmployeesDistributionCheck(uniformEmployeesDistribution_jCheckBox.isSelected());
-               
-        configurator.setBreakLenght((double) breakLenght_jSpinner.getValue());
+
         configurator.setEmployeesPerPeriod((int) employeesPerPeriod_jSpinner.getValue());
-        configurator.setHoursPerDay((double) hoursPerDay_jSpinner.getValue());
-        configurator.setShiftLenghtMax((double) shiftLenghtMax_jSpinner.getValue());
-        configurator.setShiftLenghtMin((double) shiftLenghtMin_jSpinner.getValue());
+
         configurator.setShiftsPerDay((int) shiftsPerDay_jSpinner.getValue());
-        configurator.setOvernightRest((double) overnightRest_jSpinner.getValue());
+
+        double breakLenght = (double) breakLenght_jSpinner.getValue();
+        // ensures that we work in half-hour units: e.g. 8.5 for 8:30, 8.3 is converted in 8.5
+        // conversion will be done in AspEasyScoreCalculator anyway, ensures consistency of gui with code
+        breakLenght = (Math.round(breakLenght * 2)) / 2.0;
+        breakLenght_jSpinner.setValue(breakLenght);
+        configurator.setBreakLenght(breakLenght);
+
+        double hoursPerDay = (double) hoursPerDay_jSpinner.getValue();
+        hoursPerDay = (Math.round(hoursPerDay * 2)) / 2.0;
+        hoursPerDay_jSpinner.setValue(hoursPerDay);
+        configurator.setHoursPerDay(hoursPerDay);
+
+        double shiftLenghtMax = (double) shiftLenghtMax_jSpinner.getValue();
+        shiftLenghtMax = (Math.round(shiftLenghtMax * 2)) / 2.0;
+        shiftLenghtMax_jSpinner.setValue(shiftLenghtMax);
+        configurator.setShiftLenghtMax(shiftLenghtMax);
+
+        double shiftLenghtMin = (double) shiftLenghtMin_jSpinner.getValue();
+        shiftLenghtMin = (Math.round(shiftLenghtMin * 2)) / 2.0;
+        shiftLenghtMin_jSpinner.setValue(shiftLenghtMin);
+        configurator.setShiftLenghtMin(shiftLenghtMin);
+
+        double overnightRest = (double) overnightRest_jSpinner.getValue();
+        overnightRest = (Math.round(overnightRest * 2)) / 2.0;
+        overnightRest_jSpinner.setValue(overnightRest);
+        configurator.setOvernightRest(overnightRest);
     }
     
     // Update the hour labels for everyone

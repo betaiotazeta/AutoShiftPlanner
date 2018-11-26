@@ -5,8 +5,10 @@
     <benchmarkDirectory>local/benchmarkReport/</benchmarkDirectory>
     <inheritedSolverBenchmark>
         <problemBenchmarks>
+            <xStreamAnnotatedClass>org.betaiotazeta.autoshiftplanner.Solution</xStreamAnnotatedClass>
             <inputSolutionFile>data/unsolved/asp_7employees_forbidden_mandatory.xml</inputSolutionFile>
             <!-- <inputSolutionFile>local/solutionFile/anotherSolutionFile.xml</inputSolutionFile> -->
+            <!-- <writeOutputSolutionEnabled>true</writeOutputSolutionEnabled> -->
         </problemBenchmarks>
         <solver>
             <!-- Common solver configuration -->
@@ -33,7 +35,7 @@
             </constructionHeuristic>
                                     
         </solver>
-        <subSingleCount>18</subSingleCount>
+        <subSingleCount>9</subSingleCount>
     </inheritedSolverBenchmark>
    
     <solverBenchmark>

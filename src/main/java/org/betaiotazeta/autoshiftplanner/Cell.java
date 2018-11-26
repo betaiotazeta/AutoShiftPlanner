@@ -1,9 +1,12 @@
 package org.betaiotazeta.autoshiftplanner;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
 /**
  *
  * @author betaiotazeta
  */
+@XStreamAlias("cell")
 public class Cell implements Cloneable {
 
     public Cell(byte idEmployee, short idPeriod, int dayOfWeek, int startingMinuteOfDay, boolean worked, boolean mandatory, boolean forbidden) {
@@ -82,15 +85,28 @@ public class Cell implements Cloneable {
         return null;
     }    
 
+    @XStreamAlias("e")
     private byte idEmployee;
+
     // The period represents the set of all the cells belonging to the
     // various employees for a period of time that is half an hour long.
     // E.g.: from 8 to 8.30.
     // N.b: a timeGrain and a period are essentially the same thing.
+    @XStreamAlias("p")
     private short idPeriod;
+    
+    @XStreamAlias("d")
     private int dayOfWeek;
+    
+    @XStreamAlias("s")
     private int startingMinuteOfDay;
+    
+    @XStreamAlias("w")
     private boolean worked;
+    
+    @XStreamAlias("m")
     private boolean mandatory;
+    
+    @XStreamAlias("f")
     private boolean forbidden;    
 }

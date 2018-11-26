@@ -51,7 +51,7 @@ It is a detailed rule based schedule generator.
 
 *values ​​written in **bold** can be replaced or removed as per needs...*
 
-> The shop opens at **nine AM** and closes at **half past nine PM**. There are **seven** employees, **five** of whom work **forty** hours a week and **two** have **twenty-one** hours. **Each** employee has **two** free days per week. The **supply truck** arrives at **half past eight** on **Monday**, **Wednesday** and **Friday**. **Only** in these days there must be already present staff. An employee asked to have an **extra free** afternoon on Friday. The same employee **must be** in the shop in the morning from **half past nine AM** to **half past ten AM**. No employee can do more than **eight** total hours per day while no one can do less than **three** consecutive hours or more than **six** consecutive hours per day. Each employee may possibly take **only one** break which must however be **one** hour long. In the shop there must always be at least **two** people. Some specific employees must be present during **opening** or **closing** of the shop. There **must not** be times when there is **too much** staff present or **too little**.
+> The shop opens at **nine AM** and closes at **half past nine PM**. The **supply truck** arrives at **half past eight** on **Monday**, **Wednesday** and **Friday**. **Only** on these days there must be already present staff. There are **seven** employees, **five** of whom work **forty** hours a week and **two** have **twenty-one** hours. **Each** employee has **two** free days per week. An employee asked to have an **extra free** afternoon on Friday. The same employee **must be** in the shop in the morning from **half past nine AM** to **half past ten AM**. No employee can do more than **eight** total hours per day while no one can do less than **three** consecutive hours or more than **six** consecutive hours per day. Each employee may possibly take **only one** break which must however be **one** hour long. In the shop there must always be at least **two** people. Some specific employees must be present during **opening** or **closing** of the shop. All employees are entitled to a night's rest of at least **twelve** hours between one working day and the next. There **must not** be times when there is **too much** staff present or **too little**.
 
 [Tell me how to use this application...](./usage.html).
 
@@ -67,8 +67,16 @@ It is a detailed rule based schedule generator.
 
 # Download
 
-1. You need to have **Java** which you can find [here](https://java.com)
-1. Click "download application" (at the top of the screen)
+#### Windows:
+
+1. Click "download application" (at the top of this page)
+1. Download the latest file named: AutoShiftPlanner-x.x.x_windows_installer.exe (e.g. AutoShiftPlanner-0.2.0_windows_installer.exe)
+1. Double click the downloaded file to install the application.
+
+#### Linux, Mac, Windows advanced:
+
+1. You need to have **Java** pre-installed which you can find [here](https://java.com)
+1. Click "download application" (at the top of this page)
 1. Download the latest file named: AutoShiftPlanner-X.X.X-jar-with-dependencies.jar (e.g. AutoShiftPlanner-0.2.0-jar-with-dependencies.jar)
 1. Double click the icon or type "java -jar AutoShiftPlanner-X.X.X-jar-with-dependencies.jar" in a terminal (or the Command Prompt)
 1. How to open the Command Prompt in Windows: click Start, scroll down and expand the “Windows System” folder, click “Command Prompt”

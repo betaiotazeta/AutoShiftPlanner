@@ -176,26 +176,32 @@ public class TableGraphic {
         // Variable nC stands for the number of columns in the table.
         // int nC = table.getnumberOfColumns();        
         // Variable sT stands for business start time.
-        double sT = business.getStartTime();        
+        double sT = business.getStartTime();
         // Variable eT stands for business end time.
-        // double eT = business.getEndTime();
-        
-        double sTf = Math.floor(sT);
-        // double eTf = Math.floor(eT);
-        
-        if ( sT == sTf) {
+        double eT = business.getEndTime();
+
+        int sTi = (int) sT;
+        int eTi = (int) eT;
+
+        if (sT == sTi) {
             // working time starts at full hour
-            for (int i = 0; i <= (nC / 2); i++) {                
-                g2.drawString( (int) (sT + i) + "", xLeft + (i * 2 * rectangleLength), yTop - eH);
-            }
-        }
-        else {
-            // working time starts at half an hour
             for (int i = 0; i <= (nC / 2); i++) {
-                g2.drawString( (int) (sT + 0.5 + i) + "", xLeft + rectangleLength + (i * 2 * rectangleLength), yTop - eH);
+                g2.drawString((int) (sT + i) + "", xLeft + (i * 2 * rectangleLength), yTop - eH);
+            }
+        } else {
+            if (eT == eTi) {
+                // working time starts at half an hour
+                for (int i = 0; i <= (nC / 2); i++) {
+                    g2.drawString((int) (sT + 0.5 + i) + "", xLeft + rectangleLength + (i * 2 * rectangleLength), yTop - eH);
+                }
+            } else {
+                // working time starts at half an hour and ends at half an hour
+                for (int i = 0; i <= ((nC / 2)) - 1; i++) {
+                    g2.drawString((int) (sT + 0.5 + i) + "", xLeft + rectangleLength + (i * 2 * rectangleLength), yTop - eH);
+                }
             }
         }
-    }    
+    }
         
     public int getRectangleLength() {
         return rectangleLength;

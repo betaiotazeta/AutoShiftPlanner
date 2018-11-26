@@ -45,6 +45,8 @@ Each employee is characterized by a name and the amount of weekly hours he or sh
   - the duration of the break between a shift and the next one must correspond exactly to the set value. The time span between two shifts taking place on a single day is considered a break. The violation of this constraint leads to a worsening of the hardscore.
 - *Minimum employees per period*:
   - the minimum number of employees present for each period. By period we mean the half-hour time frame that can be assigned to one or more employees. A period is a collection of all time units (rectangles) on a given day and at a certain time. For example, a period is the Monday time interval from eight to eight and a half and contains a time unit (rectangle) for each employee. The violation of this constraint leads to a worsening of the hardscore.
+- *Minimum overnight rest*:
+  - the minimum amount of night-time rest, usually doe to legal requirements or company agreements, to which the employee is entitled between one working day and the next. For example, if this value is set to 12, the employee who finishes his work shift at 8 pm should not resume service before 8 am the next day. The violation of this constraint leads to a worsening of the hardscore.
 - *Mandatory shifts*:
   - the application takes into account the time units (squares) that are defined as mandatory (contain white ellipses) and provides for the assignment of the working hours. Usually it is not necessary to define all the time units (squares) involved in the work shift as mandatory because the work shift will be assigned also in accordance with the other rules in force. The violation of this constraint leads to a worsening of the hardscore.
 - *Uniformly distributed employees*:

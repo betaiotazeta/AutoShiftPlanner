@@ -1,9 +1,12 @@
 package org.betaiotazeta.autoshiftplanner;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
 /**
  *
  * @author betaiotazeta
  */
+@XStreamAlias("day")
 public class Day {
 
     public int getDayOfWeek() {

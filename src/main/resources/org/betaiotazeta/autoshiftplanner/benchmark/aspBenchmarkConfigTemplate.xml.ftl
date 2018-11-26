@@ -5,6 +5,7 @@
     <benchmarkDirectory>local/benchmarkReport/</benchmarkDirectory>
     <inheritedSolverBenchmark>
         <problemBenchmarks>
+            <xStreamAnnotatedClass>org.betaiotazeta.autoshiftplanner.Solution</xStreamAnnotatedClass>
             <inputSolutionFile>data/unsolved/asp_7employees_forbidden_mandatory.xml</inputSolutionFile>
             <!-- <inputSolutionFile>local/solutionFile/anotherSolutionFile.xml</inputSolutionFile> -->
         </problemBenchmarks>
