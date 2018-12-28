@@ -15,7 +15,7 @@ It is a detailed rule based schedule generator.
 
 ###### Let's see how Auto Shift Planner looks like in action...
 
-![AutoShiftPlanner_screenshot_animated](/images/AutoShiftPlanner_screenshot_animated.gif)
+[![AutoShiftPlanner_video](/images/AutoShiftPlanner_thumbnail.jpg)](https://www.youtube.com/watch?v=Aq9IrqJeEGQ "Auto Shift Planner - Presentation - Click to Watch")
 
 * * *
 
@@ -59,9 +59,9 @@ It is a detailed rule based schedule generator.
 
 # Screenshots
 
-![AutoShiftPlanner_screenshot_1](/images/AutoShiftPlanner_screenshot_1.png)
+![AutoShiftPlanner_settings](/images/AutoShiftPlanner_screenshot_1.png)
 
-![AutoShiftPlanner_screenshot_2](/images/AutoShiftPlanner_screenshot_2.png)
+![AutoShiftPlanner_editor](/images/AutoShiftPlanner_screenshot_2.png)
 
 * * *
 
