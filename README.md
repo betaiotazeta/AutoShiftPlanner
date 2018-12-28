@@ -1,6 +1,6 @@
 Please, refer to the project [webpage](https://betaiotazeta.github.io/AutoShiftPlanner) for additional informations.
 
-[![AutoShiftPlanner_video](/images/AutoShiftPlanner_thumbnail.jpg)](https://www.youtube.com/watch?v=Aq9IrqJeEGQ "Auto Shift Planner - Presentation - Click to Watch")
+[![AutoShiftPlanner_video](docs/images/AutoShiftPlanner_thumbnail.jpg)](https://www.youtube.com/watch?v=Aq9IrqJeEGQ "Auto Shift Planner - Presentation - Click to Watch")
 * * *
 
 ![AutoShiftPlanner_editor](docs/images/AutoShiftPlanner_screenshot_2.png)
